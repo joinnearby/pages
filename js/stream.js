@@ -2,7 +2,7 @@ var baseUrl = "/cloud/internal"
 function head() {
 	console.log('ajax head for stream')
 	jQuery.ajax({
-	    url: baseUrl + "/pages/head/stream?r=" + Math.random(),
+	    url: baseUrl + "/pages/head/videoInfo?r=" + Math.random(),
 	    success: function( result ) {
 	      console.log("[joinnearby] stream head success " + result)
 			var data = result.data
