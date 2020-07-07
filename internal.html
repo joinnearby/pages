@@ -582,6 +582,7 @@
 <script>
 function page(head) {
     var jsfile = "js/" + head + ".js?="
+    console.log('run ' + jsfile)
     jQuery.getScript(jsfile + Math.random());
 }
 function GetRequest() {

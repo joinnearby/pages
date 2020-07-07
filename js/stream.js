@@ -1,5 +1,6 @@
 var baseUrl = "/cloud/internal"
 function head() {
+	console.log('ajax head for stream')
 	jQuery.ajax({
 	    url: baseUrl + "/pages/head/stream?r=" + Math.random(),
 	    success: function( result ) {
@@ -10,3 +11,7 @@ function head() {
 	    }
 	})
 }
+
+
+
+head()
