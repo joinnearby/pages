@@ -3,7 +3,7 @@ var title = ''
 var values = []
 var dataMap = {}
 var lastId = ''
-function data() {
+function first() {
 	console.log('ajax data for stream')
 	jQuery.ajax({
 		url: baseUrl + "/stream/page?pageSize=10r=" + Math.random(),
@@ -18,11 +18,15 @@ function data() {
 					var name = values[j]
 					console.log("append obj." + name)
 					table = table + '<td>' + obj[name] + '</td>\n'
+					var id = obj['hash']
+					dataMap[id] = obj
+					lastId = id
 				}
 				table = table + '</tr>\n'
 			}
 			table = table + '</table>\n'
 			$("#pages-data").html(table)
+			console.log("lastId = " + lastId)
 		},
 		error: function( xhr, result, obj ) {
 			console.log("[joinnearby] stream head error " + result)
@@ -49,7 +53,7 @@ function head() {
 			$("#pages-head").attr("head", values.length)
 			$("#pages-head").attr("name", title)
 			$("#pages-title").text(title)
-			data()
+			first()
 	    },
 	    error: function( xhr, result, obj ) {
 	      console.log("[joinnearby] stream head error " + result)
