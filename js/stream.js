@@ -6,7 +6,7 @@ var lastId = ''
 function first() {
 	console.log('ajax data for stream')
 	jQuery.ajax({
-		url: baseUrl + "/stream/page?pageSize=10r=" + Math.random(),
+		url: baseUrl + "/stream/page?pageSize=10&r=" + Math.random(),
 		success: function( result ) {
 			console.log("[joinnearby] stream data success " + result)
 			var data = result.data
