@@ -3,6 +3,7 @@ var title = ''
 var values = []
 var dataMap = {}
 var lastId = ''
+var limited = 7
 function first() {
 	console.log('ajax data for stream')
 	jQuery.ajax({
@@ -17,7 +18,9 @@ function first() {
 				for(var j=0;j<values.length;j++) {
 					var name = values[j]
 					console.log("append obj." + name)
-					table = table + '<td>' + obj[name] + '</td>\n'
+					if(j < limited) {
+						table = table + '<td>' + obj[name] + '</td>\n'
+					}
 					var id = obj['hash']
 					dataMap[id] = obj
 					lastId = id
@@ -46,7 +49,9 @@ function head() {
 			var table = '<table class="max-table"><tr>\n'
 			for(var i=0;i<values.length;i++) {
 				console.log("append " + values[i])
-				table = table + '<td>' + values[i] + '</td>\n'
+				if(i < limited) {
+					table = table + '<td>' + values[i] + '</td>\n'
+				}
 			}
 			table = table + '</tr></table>\n'
 			$("#pages-head").html(table)
