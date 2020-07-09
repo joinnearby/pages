@@ -69,6 +69,7 @@ function head() {
 	})
 }
 
-
+$("#pages-head").html('')
+$("#pages-data").html('')
 
 head()
