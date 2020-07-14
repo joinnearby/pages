@@ -17,7 +17,7 @@ function first() {
 				for(var j=0;j<values.length;j++) {
 					var name = values[j].name
 					console.log("append obj." + name)
-					if(values[i].visible === 'true') {
+					if(values[i].visible) {
 						table = table + '<td>' + obj[name] + '</td>\n'
 					}
 					var id = obj['hash']
@@ -51,7 +51,7 @@ function head() {
 			var table = '<table class="max-table"><tr>\n'
 			for(var i=0;i<values.length;i++) {
 				console.log("append " + values[i])
-				if(values[i].visible === 'true') {
+				if(values[i].visible) {
 					table = table + '<td>' + values[i].value + '</td>\n'
 				}
 			}
