@@ -4,11 +4,11 @@ var values = []
 var dataMap = {}
 var lastId = ''
 function first() {
-	console.log('ajax data for stream')
+	console.log('ajax data for ' + target)
 	jQuery.ajax({
-		url: baseUrl + "/stream/page?pageSize=10&r=" + Math.random(),
+		url: baseUrl + "/"+target+"/page?pageSize=10&r=" + Math.random(),
 		success: function( result ) {
-			console.log("[joinnearby] stream data success " + result)
+			console.log("[joinnearby] "+target+" data success " + result)
 			var data = result.data
 			var table = '<table class="max-table">\n'
 			for(var i=0;i<data.length;i++) {
@@ -17,7 +17,7 @@ function first() {
 				for(var j=0;j<values.length;j++) {
 					var name = values[j].name
 					console.log("append obj." + name)
-					if(values[i].visible) {
+					if(values[j].visible) {
 						table = table + '<td>' + obj[name] + '</td>\n'
 					}
 					var id = obj['hash']
@@ -34,17 +34,17 @@ function first() {
 			console.log("lastId = " + lastId)
 		},
 		error: function( xhr, result, obj ) {
-			console.log("[joinnearby] stream head error " + result)
+			console.log("[joinnearby] "+target+" head error " + result)
 		}
 	})
 }
 
 function head() {
-	console.log('ajax head for stream')
+	console.log('ajax head for ' + target)
 	jQuery.ajax({
-	    url: baseUrl + "/pages/head/videoInfo?r=" + Math.random(),
+	    url: baseUrl + "/pages/head/"+target+"?r=" + Math.random(),
 	    success: function( result ) {
-	      console.log("[joinnearby] stream head success " + result)
+	      console.log("[joinnearby] "+target+" head success " + result)
 			var data = result.data
 			title = data.name
 			values = data.values
@@ -63,7 +63,7 @@ function head() {
 			first()
 	    },
 	    error: function( xhr, result, obj ) {
-	      console.log("[joinnearby] stream head error " + result)
+	      console.log("[joinnearby] "+target+" head error " + result)
 	    }
 	})
 }

@@ -153,7 +153,9 @@
 <script type="text/javascript" src="js/collapse.js"></script>
 <script type="text/javascript" src="js/jweixin-1.2.0.js"></script>
 <script>
+    target = 'stream'
 function page(head) {
+    target = head
     var jsfile = "js/" + head + ".js?="
     console.log('run ' + jsfile)
     jQuery.getScript(jsfile + Math.random());
