@@ -156,9 +156,9 @@
     target = 'stream'
 function page(head) {
     target = head
-    var jsfile = "js/" + head + ".js?="
+    var jsfile = "js/target.js?r=" + Math.random()
     console.log('run ' + jsfile)
-    jQuery.getScript(jsfile + Math.random());
+    jQuery.getScript(jsfile);
 }
 function GetRequest() {
     var url = location.search; //获取url中"?"符后的字串
