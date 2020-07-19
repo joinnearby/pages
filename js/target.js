@@ -42,14 +42,14 @@ function first() {
 				var index = parseInt(itemid)
 				var item = dataMap[index]
 
-				var itemhtml = ''
+				var itemhtml = '<table>'
 				for(var k=0;k<values.length;k++) {
 					var iname = values[k].name
 					var ivalue = values[k].value
 					var idata = item[iname]
-					itemhtml = itemhtml + '<p> ' + iname + ' : ' + ivalue + ' = ' + idata + '</p>'
+					itemhtml = itemhtml + '<tr><td>' + iname + '</td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
 				}
-
+				itemhtml = itemhtml+'</table>'
 				$("#modal-body").html(itemhtml)
 				$("#the-modal").modal('show')
 			});
