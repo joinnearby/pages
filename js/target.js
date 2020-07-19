@@ -42,7 +42,7 @@ function first() {
 
 				var index = parseInt(itemid)
 				var item = dataMap[index]
-				$("#modal-body").html(JSON.stringify(item))
+				$("#modal-body").text(JSON.stringify(item))
 				console.log(html)
 				$("#the-modal").modal('show')
 			});
