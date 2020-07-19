@@ -71,4 +71,11 @@ function head() {
 $("#pages-head").html('')
 $("#pages-data").html('')
 
-head()
+
+
+$(document).ready(function(){
+	head()
+	$("td").click(
+		$("#the-modal").modal('show')
+	);
+});

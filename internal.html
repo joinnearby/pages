@@ -121,7 +121,7 @@
     </div>
 </div>
 
-    <div style="background: rgba(200,200,200,0.8);min-height: 30px;border-top: 1px solid #e6e6e6; width: auto; padding: 10px 10px;box-shadow: 0px 8px 8px rgba(0,0,0,.2);text-align: center; color: white;">
+    <div style="background: #fefefe;min-height: 30px;border-top: 1px solid #e6e6e6; width: auto; padding: 10px 10px;box-shadow: 0px 8px 8px rgba(0,0,0,.2);text-align: center; color: white;">
         <a href="#more">加载更多</a>
     </div>
 
@@ -154,26 +154,12 @@
 <script type="text/javascript" src="js/jweixin-1.2.0.js"></script>
 <script>
     target = 'stream'
-function page(head) {
-    target = head
-    var jsfile = "js/target.js?r=" + Math.random()
-    console.log('run ' + jsfile)
-    jQuery.getScript(jsfile);
-}
-function GetRequest() {
-    var url = location.search; //获取url中"?"符后的字串
-    var theRequest = new Object();
-    if (url.indexOf("?") != -1) {
-        var str = url.substr(1);
-        strs = str.split("&");
-        for(var i = 0; i < strs.length; i ++) {
-            theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
-        }
+    function page(head) {
+        target = head
+        var jsfile = "js/target.js?r=" + Math.random()
+        console.log('run ' + jsfile)
+        jQuery.getScript(jsfile);
     }
-    return theRequest;
-}
-var request = GetRequest();
-var modal = $('#the-modal')
 </script>
 </body>
 </html>
