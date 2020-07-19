@@ -38,10 +38,11 @@ function first() {
 				var html = tr.html()
 				var itemid = tr.data('itemid')
 				console.log(itemid)
-				var index = parseInt(itemid)
 				$("#modal-title").text('修改数据：'+itemid)
+
+				var index = parseInt(itemid)
 				var item = dataMap[index]
-				$("#modal-body").text(JSON.stringify(item))
+				$("#modal-body").html(JSON.stringify(item))
 				console.log(html)
 				$("#the-modal").modal('show')
 			});
