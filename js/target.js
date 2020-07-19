@@ -47,7 +47,7 @@ function first() {
 					var iname = values[k].name
 					var ivalue = values[k].value
 					var idata = item[iname]
-					itemhtml = itemhtml + '<tr><td>' + iname + '</td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
+					itemhtml = itemhtml + '<tr><td>' + iname + '</td><td>' + ivalue + '</td><td>' + idata + '</td><td><button>修改</button></td></tr>'
 				}
 				itemhtml = itemhtml+'</table>'
 				$("#modal-body").html(itemhtml)
