@@ -26,7 +26,7 @@ function first() {
 				}
 				table = table + '</tr>\n'
 			}
-			if(data.length < 1) {
+			if(dataMap.length < 1) {
 				table = table + '<tr>Nothing to be shown</tr>'
 			}
 			table = table + '</table>\n'
