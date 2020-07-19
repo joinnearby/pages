@@ -32,6 +32,12 @@ function first() {
 			table = table + '</table>\n'
 			$("#pages-data").html(table)
 			console.log("lastId = " + lastId)
+
+			$("td").click(function() {
+				var html = $(this).parent().html()
+				console.log(html)
+				$("#the-modal").modal('show')
+			});
 		},
 		error: function( xhr, result, obj ) {
 			console.log("[joinnearby] "+target+" head error " + result)
@@ -75,9 +81,5 @@ $("#pages-data").html('')
 
 $(document).ready(function(){
 	head()
-	$("td").click(function() {
-		var html = $(this).parent().html()
-		console.log(html)
-		$("#the-modal").modal('show')
-	});
+
 });
