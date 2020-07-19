@@ -3,12 +3,14 @@ var title = ''
 var values = []
 var dataMap = []
 var lastId = ''
+var pointer = 0
 function first() {
 	console.log('ajax data for ' + target)
 	jQuery.ajax({
 		url: baseUrl + "/"+target+"/page?pageSize=10&r=" + Math.random(),
 		success: function( result ) {
 			console.log("[joinnearby] "+target+" data success " + result)
+			pointer = 0
 			dataMap = result.data
 			var table = '<table class="max-table">\n'
 			for(var i=0;i<dataMap.length;i++) {
