@@ -1,7 +1,7 @@
 var baseUrl = "/cloud/internal"
 var title = ''
 var values = []
-var dataMap = {}
+var dataMap = []
 var lastId = ''
 function first() {
 	console.log('ajax data for ' + target)
@@ -9,10 +9,10 @@ function first() {
 		url: baseUrl + "/"+target+"/page?pageSize=10&r=" + Math.random(),
 		success: function( result ) {
 			console.log("[joinnearby] "+target+" data success " + result)
-			var data = result.data
+			dataMap = result.data
 			var table = '<table class="max-table">\n'
-			for(var i=0;i<data.length;i++) {
-				var obj = data[i]
+			for(var i=0;i<dataMap.length;i++) {
+				var obj = dataMap[i]
 				table = table + '<tr data-itemid="'+i+'">\n'
 				for(var j=0;j<values.length;j++) {
 					var name = values[j].name
@@ -20,9 +20,7 @@ function first() {
 					if(values[j].visible) {
 						table = table + '<td>' + obj[name] + '</td>\n'
 					}
-					var id = obj['hash']
-					dataMap[id] = obj
-					lastId = id
+					lastId = obj['hash']
 				}
 				table = table + '</tr>\n'
 			}
@@ -38,8 +36,9 @@ function first() {
 				var html = tr.html()
 				var itemid = tr.data('itemid')
 				console.log(itemid)
+				var index = parseInt(itemid)
 				$("#modal-title").text('修改数据：'+itemid)
-				var item = values[parseInt(itemid)]
+				var item = dataMap[index]
 				$("#modal-body").text(JSON.stringify(item))
 				console.log(html)
 				$("#the-modal").modal('show')
