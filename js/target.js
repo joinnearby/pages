@@ -46,7 +46,7 @@ function first() {
 				for(var k=0;k<values.length;k++) {
 					var iname = values[k].name
 					var ivalue = values[k].value
-					var idata = item[name]
+					var idata = item[iname]
 					itemhtml = itemhtml + '<p> ' + iname + ' : ' + ivalue + ' = ' + idata + '</p>'
 				}
 
