@@ -13,7 +13,7 @@ function first() {
 			var table = '<table class="max-table">\n'
 			for(var i=0;i<data.length;i++) {
 				var obj = data[i]
-				table = table + '<tr>\n'
+				table = table + '<tr data-itemid="'+i+'">\n'
 				for(var j=0;j<values.length;j++) {
 					var name = values[j].name
 					console.log("append obj." + name)
@@ -34,7 +34,11 @@ function first() {
 			console.log("lastId = " + lastId)
 
 			$("td").click(function() {
-				var html = $(this).parent().html()
+				var tr = $(this).parent()
+				var html = tr.html()
+				var itemid = tr.data('itemid')
+				console.log(itemid)
+				$("#modal-title").text(itemid)
 				console.log(html)
 				$("#the-modal").modal('show')
 			});
