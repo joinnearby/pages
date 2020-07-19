@@ -35,15 +35,22 @@ function first() {
 
 			$("td.data-item").click(function() {
 				var tr = $(this).parent()
-				var html = tr.html()
 				var itemid = tr.data('itemid')
 				console.log(itemid)
 				$("#modal-title").text('修改数据：'+itemid)
 
 				var index = parseInt(itemid)
 				var item = dataMap[index]
-				$("#modal-body").text(JSON.stringify(item))
-				console.log(html)
+
+				var itemhtml = ''
+				for(var k=0;k<values.length;k++) {
+					var iname = values[k].name
+					var ivalue = values[k].value
+					var idata = item[name]
+					itemhtml = itemhtml + '<p> ' + iname + ' : ' + ivalue + ' = ' + idata + '</p>'
+				}
+
+				$("#modal-body").html(itemhtml)
 				$("#the-modal").modal('show')
 			});
 		},
