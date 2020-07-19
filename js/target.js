@@ -75,7 +75,9 @@ $("#pages-data").html('')
 
 $(document).ready(function(){
 	head()
-	$("td").click(
+	$("td").click(function() {
+		var html = $(this).parent().html()
+		console.log(html)
 		$("#the-modal").modal('show')
-	);
+	});
 });
