@@ -20,7 +20,7 @@ function first() {
 					var name = values[j].name
 					console.log("append obj." + name)
 					if(values[j].visible) {
-						table = table + '<td>' + obj[name] + '</td>\n'
+						table = table + '<td class="data-item">' + obj[name] + '</td>\n'
 					}
 					lastId = obj['hash']
 				}
@@ -33,7 +33,7 @@ function first() {
 			$("#pages-data").html(table)
 			console.log("lastId = " + lastId)
 
-			$("td").click(function() {
+			$("td.data-item").click(function() {
 				var tr = $(this).parent()
 				var html = tr.html()
 				var itemid = tr.data('itemid')
