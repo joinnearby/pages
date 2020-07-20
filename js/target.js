@@ -8,8 +8,8 @@ function deleteitem(itemid) {
 	console.log('deleteitem: ' + itemid)
 }
 
-function updateitem(itemid) {
-	console.log('updateitem: ' + itemid)
+function updateitem(iname, itemid) {
+	console.log('updateitem: ' + itemid + ' @ ' + iname)
 }
 function first() {
 	console.log('ajax data for ' + target)
@@ -54,7 +54,7 @@ function first() {
 					var iname = values[k].name
 					var ivalue = values[k].value
 					var idata = item[iname]
-					itemhtml = itemhtml + '<tr><td>' + ivalue + '</td><td>' + idata + '</td><td><button onclick="updateitem(' + iname + ')">修改</button></td></tr>'
+					itemhtml = itemhtml + '<tr><td>' + ivalue + '</td><td>' + idata + '</td><td><button onclick="updateitem(\"' + iname + '\",' +'\"' + itemid + '\")">修改</button></td></tr>'
 				}
 				itemhtml = itemhtml+'</table>'
 				$("#modal-body").html(itemhtml)
