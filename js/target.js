@@ -4,6 +4,13 @@ var values = []
 var dataMap = []
 var lastId = ''
 var pointer = 0
+function deleteitem(itemid) {
+	console.log('deleteitem: ' + itemid)
+}
+
+function updateitem(itemid) {
+	console.log('updateitem: ' + itemid)
+}
 function first() {
 	console.log('ajax data for ' + target)
 	jQuery.ajax({
@@ -37,7 +44,7 @@ function first() {
 				var tr = $(this).parent()
 				var itemid = tr.data('itemid')
 				console.log(itemid)
-				$("#modal-title").text('修改数据：'+itemid)
+				$("#modal-title").html('<button onclick="deleteitem('+itemid +')"> 删除</button>')
 
 				var index = parseInt(itemid)
 				var item = dataMap[index]
@@ -47,7 +54,7 @@ function first() {
 					var iname = values[k].name
 					var ivalue = values[k].value
 					var idata = item[iname]
-					itemhtml = itemhtml + '<tr><td>' + iname + '</td><td>' + ivalue + '</td><td>' + idata + '</td><td><button>修改</button></td></tr>'
+					itemhtml = itemhtml + '<tr><td>' + ivalue + '</td><td>' + idata + '</td><td><button onclick="updateitem(' + iname + ')">修改</button></td></tr>'
 				}
 				itemhtml = itemhtml+'</table>'
 				$("#modal-body").html(itemhtml)
