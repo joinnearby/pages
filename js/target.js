@@ -86,7 +86,6 @@ function head() {
 			table = table + '</tr></table>\n'
 			$("#pages-head").attr("head", values.length)
 			$("#pages-head").attr("name", title)
-			$("#pages-title").text(title)
 			first()
 	    },
 	    error: function( xhr, result, obj ) {
@@ -102,5 +101,7 @@ $("#pages-data").html('')
 
 $(document).ready(function(){
 	head()
-
+	$("#search-btn").click(function() {
+		console.log()
+	});
 });
