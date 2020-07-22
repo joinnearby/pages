@@ -84,7 +84,6 @@ function head() {
 				}
 			}
 			table = table + '</tr></table>\n'
-			$("#pages-head").html(table)
 			$("#pages-head").attr("head", values.length)
 			$("#pages-head").attr("name", title)
 			$("#pages-title").text(title)

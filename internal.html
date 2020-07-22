@@ -31,6 +31,11 @@
       .modal-body {
           text-align: left;
       }
+      .search {
+          padding: 2px 3px;
+          min-width: 210px;
+          min-height: 36px;
+      }
   </style>
 </head>
 <body>
@@ -94,7 +99,8 @@
     
 
 <div id="pages-title" style="border: 1px solid #e6e6e6;min-height: 61px;width: auto; padding: 10px 10px;box-shadow: 0px 8px 8px rgba(0,0,0,.2);text-align: center; color: white;">
-    <p>这里将展示筛选条件</p>
+    <input type="text" name="search" id="search" class="search" value="" placeholder=" 搜索..."/>
+    <button type="submit" class="btn"><i class="icon-search"></i> 搜索</button>
 </div>
 
 
