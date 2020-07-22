@@ -44,7 +44,7 @@ function first() {
 				var tr = $(this).parent()
 				var itemid = tr.data('itemid')
 				console.log(itemid)
-				$("#modal-title").html('<button onclick="deleteitem('+itemid +')"> 删除</button>')
+				$("#modal-title").html('<button type="button" class="btn btn-warning" onclick="removeitem('+itemid +')"> 彻底删除</button><button type="button" class="btn btn-default" onclick="deleteitem('+itemid +')"> 删除</button>')
 
 				var index = parseInt(itemid)
 				var item = dataMap[index]
@@ -54,7 +54,7 @@ function first() {
 					var iname = values[k].name
 					var ivalue = values[k].value
 					var idata = item[iname]
-					itemhtml = itemhtml + '<tr><td><button onclick="updateitem(\'' + iname + '\',' + itemid + ')">修改</button></td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
+					itemhtml = itemhtml + '<tr><td><button class="btn btn-sm" onclick="updateitem(\'' + iname + '\',' + itemid + ')"> 修改 </button> </td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
 				}
 				itemhtml = itemhtml+'</table>'
 				$("#modal-body").html(itemhtml)
