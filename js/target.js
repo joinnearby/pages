@@ -54,7 +54,7 @@ function first() {
 					var iname = values[k].name
 					var ivalue = values[k].value
 					var idata = item[iname]
-					itemhtml = itemhtml + '<tr><td><button class="btn btn-sm" onclick="updateitem(\'' + iname + '\',' + itemid + ')"> <span class="glyphicon glyphicon-edit"> </span> </button> </td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
+					itemhtml = itemhtml + '<tr><td><button onclick="updateitem(\'' + iname + '\',' + itemid + ')"> <span class="glyphicon glyphicon-edit"> </span> </button> </td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
 				}
 				itemhtml = itemhtml+'</table>'
 				$("#modal-body").html(itemhtml)
