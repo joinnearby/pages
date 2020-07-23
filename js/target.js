@@ -44,7 +44,7 @@ function updateitem(obj, iname, itemid) {
 	var text = $(input).text()
 
 	$(td).css('background', '#22be73')
-	$(input).html('<input type="text" id="'+id+'" name="update" value="'+text+'"/><button type="button" onclick="submititem(\'' + iname + '\',' + itemid + ')"></button>')
+	$(input).html('<input type="text" id="'+id+'" name="update" value="'+text+'"/><button type="button" onclick="submititem(\'' + iname + '\',' + itemid + ')"><span class="glyphicon glyphicon-ok-circle"></span></button>')
 }
 //加载第一页数据
 function first() {
