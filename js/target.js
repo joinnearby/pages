@@ -2,20 +2,61 @@ var baseUrl = "/cloud/internal"
 var title = ''
 var values = []
 var dataMap = []
-var lastId = ''
+var lastId = ['']
 var pointer = 0
-function deleteitem(itemid) {
+//下一页
+function loadmore() {
+	console.log('load more')
+	var startId = lastId.pop()
+	lastId.push(startId)
+
+	//TODO load
+
+	lastId.push('new lastId')
+	console.log('more loaded')
+}
+//上一页
+function loadless() {
+	console.log('load less')
+	var nouse = lastId.pop()
+	console.log('remove no use lastId: ' + nouse)
+	loadmore()
+	console.log('less loaded')
+}
+function removeitem(itemid) {
 	console.log('deleteitem: ' + itemid)
 }
 
-function updateitem(iname, itemid) {
-	console.log('updateitem: ' + itemid + ' @ ' + iname)
+function deleteitem(itemid) {
+	console.log('deleteitem: ' + itemid)
 }
+//确认删除
+function submititem(iname, itemid) {
+	var id = itemid + '@' +iname
+	console.log('submititem: ' + id)
+}
+//点击修改
+function updateitem(iname, itemid) {
+	var id = itemid + '@' +iname
+	console.log('updateitem: ' + id)
+	var td = $(this).parent()
+	var input = $(td).siblings()[1]
+	var text = $(input).text()
+
+	$(td).css('background', '#22be73')
+	$(td).text('确认修改')
+	$(input).html('<input type="text" id="'+id+'" name="update" value="'+text+'"/>')
+	$(td).onclick(function () {
+		submititem(iname, itemid)
+	})
+}
+//加载第一页数据
 function first() {
 	console.log('ajax data for ' + target)
 	jQuery.ajax({
 		url: baseUrl + "/"+target+"/page?pageSize=10&r=" + Math.random(),
 		success: function( result ) {
+			var nextId = ''
 			console.log("[joinnearby] "+target+" data success " + result)
 			pointer = 0
 			dataMap = result.data
@@ -29,7 +70,7 @@ function first() {
 					if(values[j].visible) {
 						table = table + '<td class="data-item">' + obj[name] + '</td>\n'
 					}
-					lastId = obj['hash']
+					nextId = obj['hash']
 				}
 				table = table + '</tr>\n'
 			}
@@ -38,6 +79,7 @@ function first() {
 			}
 			table = table + '</table>\n'
 			$("#pages-data").html(table)
+			lastId.push(nextId)
 			console.log("lastId = " + lastId)
 
 			$("td.data-item").click(function() {
@@ -66,7 +108,7 @@ function first() {
 		}
 	})
 }
-
+//加载头部信息
 function head() {
 	console.log('ajax head for ' + target)
 	jQuery.ajax({
@@ -99,10 +141,9 @@ $("#pages-head").html('')
 $("#pages-data").html('')
 
 
-
 $(document).ready(function(){
 	head()
 	$("#search-btn").click(function() {
-		console.log()
+		console.log('搜索全文')
 	});
 });
