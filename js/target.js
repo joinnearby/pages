@@ -65,7 +65,6 @@ function first() {
 				table = table + '<tr data-itemid="'+i+'">\n'
 				for(var j=0;j<values.length;j++) {
 					var name = values[j].name
-					console.log("append obj." + name)
 					if(values[j].visible) {
 						table = table + '<td class="data-item">' + obj[name] + '</td>\n'
 					}
@@ -119,7 +118,7 @@ function head() {
 			values = data.values
 			var table = '<table class="max-table"><tr>\n'
 			for(var i=0;i<values.length;i++) {
-				console.log("append " + values[i])
+				console.log("append " + JSON.stringify(values[i]))
 				if(values[i].visible) {
 					table = table + '<td>' + values[i].value + '</td>\n'
 				}
