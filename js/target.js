@@ -36,10 +36,10 @@ function submititem(iname, itemid) {
 	console.log('submititem: ' + id)
 }
 //点击修改
-function updateitem(iname, itemid) {
+function updateitem(obj, iname, itemid) {
 	var id = itemid + '@' +iname
 	console.log('updateitem: ' + id)
-	var td = $(this).parent()
+	var td = $(obj).parent()
 	var input = $(td).siblings()[1]
 	var text = $(input).text()
 
@@ -95,7 +95,7 @@ function first() {
 					var iname = values[k].name
 					var ivalue = values[k].value
 					var idata = item[iname]
-					itemhtml = itemhtml + '<tr><td><button onclick="updateitem(\'' + iname + '\',' + itemid + ')"> <span class="glyphicon glyphicon-edit"> </span> </button> </td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
+					itemhtml = itemhtml + '<tr><td><button onclick="updateitem(this, \'' + iname + '\',' + itemid + ')"> <span class="glyphicon glyphicon-edit"> </span> </button> </td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
 				}
 				itemhtml = itemhtml+'</table>'
 				$("#modal-body").html(itemhtml)
