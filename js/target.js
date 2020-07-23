@@ -44,9 +44,8 @@ function updateitem(iname, itemid) {
 	var text = $(input).text()
 
 	$(td).css('background', '#22be73')
-	$(td).text('确认修改')
 	$(input).html('<input type="text" id="'+id+'" name="update" value="'+text+'"/>')
-	$(td).onclick(function () {
+	$(td).click(function () {
 		submititem(iname, itemid)
 	})
 }
