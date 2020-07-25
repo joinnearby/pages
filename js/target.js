@@ -36,9 +36,10 @@ function submititem(iname, itemid) {
 	var id = iname + '_' + itemid
 	console.log('submititem: ' + id)
 	var input = $('#' + id)
-	var text = input.text()
+	var value = input.val()
+	console.log('ajax sending value to api: ' + value)
 	var td = input.parent()
-	$(td).text(text)
+	$(td).text(value)
 }
 //点击修改
 function updateitem(obj, iname, itemid) {
