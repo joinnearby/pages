@@ -23,16 +23,17 @@ function loadless() {
 	loadmore()
 	console.log('less loaded')
 }
+//彻底删除记录
 function removeitem(itemid) {
 	console.log('deleteitem: ' + itemid)
 }
-
+//软删除
 function deleteitem(itemid) {
 	console.log('deleteitem: ' + itemid)
 }
 //确认删除
 function submititem(iname, itemid) {
-	var id = itemid + '@' +iname
+	var id = iname + '_' + itemid
 	console.log('submititem: ' + id)
 	var input = $('#' + id)
 	var text = input.text()
@@ -41,7 +42,7 @@ function submititem(iname, itemid) {
 }
 //点击修改
 function updateitem(obj, iname, itemid) {
-	var id = itemid + '@' +iname
+	var id = iname + '_' + itemid
 	console.log('updateitem: ' + id)
 	var td = $(obj).parent()
 	var input = $(td).siblings()[1]
@@ -138,7 +139,6 @@ function head() {
 
 $("#pages-head").html('')
 $("#pages-data").html('')
-
 
 $(document).ready(function(){
 	head()
