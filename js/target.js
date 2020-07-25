@@ -34,6 +34,10 @@ function deleteitem(itemid) {
 function submititem(iname, itemid) {
 	var id = itemid + '@' +iname
 	console.log('submititem: ' + id)
+	var input = $('#' + id)
+	var text = input.text()
+	var td = input.parent()
+	td.text(text)
 }
 //点击修改
 function updateitem(obj, iname, itemid) {
@@ -42,9 +46,9 @@ function updateitem(obj, iname, itemid) {
 	var td = $(obj).parent()
 	var input = $(td).siblings()[1]
 	var text = $(input).text()
-
+	var width = $(input).css('width')
 	$(td).css('background', '#22be73')
-	$(input).html('<input type="text" id="'+id+'" name="update" value="'+text+'"/><button type="button" onclick="submititem(\'' + iname + '\',' + itemid + ')"><span class="glyphicon glyphicon-ok-circle"></span></button>')
+	$(input).html('<input type="text" style="width: '+width+'" id="'+id+'" name="update" value="'+text+'"/><button type="button" onclick="submititem(\'' + iname + '\',' + itemid + ')"><span class="glyphicon glyphicon-ok-circle"></span></button>')
 }
 //加载第一页数据
 function first() {
