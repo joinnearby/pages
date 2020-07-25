@@ -38,7 +38,7 @@ function submititem(iname, itemid) {
 	var input = $('#' + id)
 	var text = input.text()
 	var td = input.parent()
-	td.text(text)
+	$(td).text(text)
 }
 //点击修改
 function updateitem(obj, iname, itemid) {
