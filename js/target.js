@@ -40,6 +40,8 @@ function submititem(iname, itemid) {
 	console.log('ajax sending value to api: ' + value)
 	var td = input.parent()
 	$(td).text(value)
+	var obj = $(td).siblings()[0]
+	$(obj).css('background', '')
 }
 //点击修改
 function updateitem(obj, iname, itemid) {
