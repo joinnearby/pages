@@ -31,6 +31,15 @@ function removeitem(itemid) {
 function deleteitem(itemid) {
 	console.log('deleteitem: ' + itemid)
 }
+function updatetable(iname, itemid, value) {
+	var th = iname + '_' + itemid + 'th'
+	$('#' + th).text(value)
+}
+function updatedata(iname, itemid, value) {
+	var obj = dataMap[itemid]
+	obj[iname] = value
+	console.log('updated data: ' + obj[iname])
+}
 //确认删除
 function submititem(iname, itemid) {
 	var id = iname + '_' + itemid
@@ -38,10 +47,15 @@ function submititem(iname, itemid) {
 	var input = $('#' + id)
 	var value = input.val()
 	console.log('ajax sending value to api: ' + value)
+	//update input value
 	var td = input.parent()
 	$(td).text(value)
+	//update btn color
 	var obj = $(td).siblings()[0]
 	$(obj).css('background', '')
+	//update page
+	updatetable(iname, itemid, value)
+	updatedata(iname, itemid, value)
 }
 //点击修改
 function updateitem(obj, iname, itemid) {
@@ -70,8 +84,9 @@ function first() {
 				table = table + '<tr data-itemid="'+i+'">\n'
 				for(var j=0;j<values.length;j++) {
 					var name = values[j].name
+					var id = name + '_' + i + 'th'
 					if(values[j].visible) {
-						table = table + '<td class="data-item">' + obj[name] + '</td>\n'
+						table = table + '<td class="data-item" id="'+id+'">' + obj[name] + '</td>\n'
 					}
 					nextId = obj['hash']
 				}
