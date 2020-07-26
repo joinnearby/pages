@@ -149,8 +149,10 @@
 <script type="text/javascript" src="js/collapse.js"></script>
 <script type="text/javascript" src="js/jweixin-1.2.0.js"></script>
 <script>
+    $("#create").hide()
     target = 'stream'
     function page(head) {
+        $("#create").show()
         target = head
         var jsfile = "js/target.js?r=" + Math.random()
         console.log('run ' + jsfile)
