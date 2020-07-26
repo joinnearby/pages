@@ -7,20 +7,20 @@ var randnum = Math.round(Math.random() * 100000) + 10000
 var ticket
 var state
 function red() {
-	$("#" + "svg_" + ids[index % 8]).css("stroke", "pink");
+	$("#" + "svg_" + ids[index % 8]).css("stroke", "#ff5f40");
 	if (index < limited) {
 		setTimeout("green()", 100);
 	} else {
-		$("#" + "svg_" + ids[index % 8]).css("stroke", "#5cb85c");
-		$("#" + "svg_ur").css("stroke", "pink");
+		$("#" + "svg_" + ids[index % 8]).css("stroke", "#22be73");
+		$("#" + "svg_ur").css("stroke", "#ff5f40");
 	}
 }
 function green() {
-	$("#" + "svg_" + ids[index % 8]).css("stroke", "#5cb85c");
+	$("#" + "svg_" + ids[index % 8]).css("stroke", "#22be73");
 	if (index < limited) {
 		setTimeout("red()", 100);
 	} else {
-		$("#" + "svg_ur").css("stroke", "pink");
+		$("#" + "svg_ur").css("stroke", "#ff5f40");
 	}
 	index++;
 }
