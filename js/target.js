@@ -1,4 +1,5 @@
 var baseUrl = "/cloud/internal"
+var updateUrl = "/cloud/internal/pages/update"
 var title = ''
 var values = []
 var dataMap = []
@@ -44,9 +45,27 @@ function updatedata(iname, itemid, value) {
 function submititem(iname, itemid) {
 	var id = iname + '_' + itemid
 	console.log('submititem: ' + id)
+	var obj = dataMap[itemid]
+	var hash = obj['hash']
+	var oldV = obj[iname]
 	var input = $('#' + id)
 	var value = input.val()
 	console.log('ajax sending value to api: ' + value)
+	jQuery.ajax({
+		url: updateUrl + "/" + target + "?r=" + Math.random(),
+		data: {
+			title: iname,
+			hash: hash,
+			newVal: value,
+			oldVal: oldV
+		},
+		success: function (result) {
+			console.log("[joinnearby] " + target + " update ok " + result)
+		},
+		error: function (xhr, result, obj) {
+			console.log("[joinnearby] " + target + " update error " + result)
+		}
+	})
 	//update input value
 	var td = input.parent()
 	$(td).text(value)
