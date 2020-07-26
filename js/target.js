@@ -55,12 +55,12 @@ function submititem(iname, itemid) {
 		url: updateUrl + "/" + target,
 		dataType: 'json',
 		contentType:'application/json',
-		data: {
+		data: JSON.stringify({
 			title: iname,
 			hash: hash,
 			newVal: value,
 			oldVal: oldV
-		},
+		}),
 		success: function (result) {
 			console.log("[joinnearby] " + target + " update ok " + result)
 		},
