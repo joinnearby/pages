@@ -149,7 +149,13 @@
 <script type="text/javascript" src="js/suppresswarnings.js"></script>
 <script>
     $("#create").hide()
-    target = 'stream'
+
+    if(location.hash && location.hash.length > 1) {
+        target = location.hash.substr(1)
+    } else {
+        target = 'stream'
+    }
+
     function page(head) {
         $("#create").show()
         target = head
@@ -157,6 +163,8 @@
         console.log('run ' + jsfile)
         jQuery.getScript(jsfile);
     }
+
+    page(target)
 </script>
 </body>
 </html>
