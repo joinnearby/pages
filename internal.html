@@ -116,7 +116,7 @@
 </div>
 
     <div style="background: #fefefe;min-height: 30px;border-top: 1px solid #e6e6e6; width: auto; padding: 10px 10px;box-shadow: 0px 8px 8px rgba(0,0,0,.2);text-align: center; color: white;">
-        <table class="max-table"><tbody><tr><td><a href="#more" id="load-less" onclick="loadless()">上一页</a></td><td><a href="#more" id="load-more" onclick="loadmore()">下一页</a></td></tr></tbody></table>
+        <table class="max-table"><tbody><tr><td><a href="#" id="load-less" onclick="loadless()">上一页</a></td><td><a href="#" id="load-more" onclick="loadmore()">下一页</a></td></tr></tbody></table>
     </div>
 
 </div>
@@ -149,6 +149,16 @@
 <script type="text/javascript" src="js/suppresswarnings.js"></script>
 <script>
     $("#create").hide()
+    $("#search-btn").click(function() {
+        console.log('搜索全文')
+    });
+
+    $("#create").click(function() {
+        console.log('新增记录，先判断是否存在数据，否则不让新增？' + target)
+        if(values.length < 1) {
+            console.log('头部信息为空，无法新增')
+        }
+    });
 
     if(location.hash && location.hash.length > 1) {
         target = location.hash.substr(1)

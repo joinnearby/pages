@@ -181,14 +181,5 @@ $("#pages-data").html('')
 
 $(document).ready(function(){
 	head()
-	$("#search-btn").click(function() {
-		console.log('搜索全文')
-	});
 
-	$("#create").click(function() {
-		console.log('新增记录，先判断是否存在数据，否则不让新增？' + target)
-		if(values.length < 1) {
-			console.log('头部信息为空，无法新增')
-		}
-	});
 });
