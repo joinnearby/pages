@@ -54,12 +54,13 @@ function submititem(iname, itemid) {
 	jQuery.post({
 		url: updateUrl + "/" + target,
 		dataType: 'json',
-		data: {
-			"title": iname,
-			"hash": hash,
-			"newVal": value,
-			"oldVal": oldV
-		},
+		contentType:'application/json',
+		data: JSON.stringify({
+			title: iname,
+			hash: hash,
+			newVal: value,
+			oldVal: oldV
+		}),
 		success: function (result) {
 			console.log("[joinnearby] " + target + " update ok " + result)
 		},
