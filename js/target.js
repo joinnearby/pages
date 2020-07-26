@@ -54,6 +54,7 @@ function submititem(iname, itemid) {
 	jQuery.ajax({
 		url: updateUrl + "/" + target + "?r=" + Math.random(),
 		type: 'POST',
+		dataType: 'json',
 		contentType: "application/json",
 		data: {
 			title: iname,
