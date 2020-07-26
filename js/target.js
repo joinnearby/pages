@@ -54,7 +54,6 @@ function submititem(iname, itemid) {
 	jQuery.post({
 		url: updateUrl + "/" + target,
 		dataType: 'json',
-		contentType:'application/json',
 		data: {
 			"title": iname,
 			"hash": hash,
