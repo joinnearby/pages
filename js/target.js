@@ -51,11 +51,9 @@ function submititem(iname, itemid) {
 	var input = $('#' + id)
 	var value = input.val()
 	console.log('ajax sending value to api: ' + value)
-	jQuery.ajax({
-		url: updateUrl + "/" + target + "?r=" + Math.random(),
-		type: 'POST',
+	jQuery.post({
+		url: updateUrl + "/" + target,
 		dataType: 'json',
-		contentType: "application/json",
 		data: {
 			title: iname,
 			hash: hash,
