@@ -26,7 +26,22 @@ function loadless() {
 }
 //彻底删除记录
 function removeitem(itemid) {
-	console.log('deleteitem: ' + itemid)
+	console.log('removeitem: ' + itemid)
+	var obj = dataMap[itemid]
+	var hash = obj['hash']
+	jQuery.post({
+		url: baseUrl + "/" + target + "/remove/" + hash,
+		dataType: 'json',
+		contentType:'application/json',
+		success: function (result) {
+			console.log("[joinnearby] " + target + " delete ok " + result)
+			$("#hash_" + itemid + "th").parent().remove()
+			$("#the-modal").modal('hide')
+		},
+		error: function (xhr, result, obj) {
+			console.log("[joinnearby] " + target + " delete error " + result)
+		}
+	})
 }
 //软删除
 function deleteitem(itemid) {
