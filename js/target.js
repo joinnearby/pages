@@ -31,6 +31,21 @@ function removeitem(itemid) {
 //软删除
 function deleteitem(itemid) {
 	console.log('deleteitem: ' + itemid)
+	var obj = dataMap[itemid]
+	var hash = obj['hash']
+	jQuery.post({
+		url: baseUrl + "/" + target + "/delete/" + hash,
+		dataType: 'json',
+		contentType:'application/json',
+		success: function (result) {
+			console.log("[joinnearby] " + target + " delete ok " + result)
+			$("#hash_" + itemid + "th").parent().remove()
+			$("#the-modal").modal('hide')
+		},
+		error: function (xhr, result, obj) {
+			console.log("[joinnearby] " + target + " delete error " + result)
+		}
+	})
 }
 function updatetable(iname, itemid, value) {
 	var th = iname + '_' + itemid + 'th'
@@ -153,7 +168,7 @@ function head() {
 	jQuery.ajax({
 	    url: baseUrl + "/pages/head/"+target+"?r=" + Math.random(),
 	    success: function( result ) {
-	      console.log("[joinnearby] "+target+" head success " + result)
+	        console.log("[joinnearby] "+target+" head success")
 			var data = result.data
 			title = data.name
 			values = data.values
