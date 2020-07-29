@@ -150,7 +150,8 @@
 <script>
     $("#create").hide()
     $("#search-btn").click(function() {
-        console.log('搜索全文')
+        var value = $("#search").val()
+        console.log('搜索全文: ' + value)
     });
 
     $("#create").click(function() {
