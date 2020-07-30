@@ -14,6 +14,7 @@ function loadmore() {
 		url: baseUrl + "/"+target+"/page?pageSize=10&lastId="+startId+"&r=" + Math.random(),
 		success: function( result ) {
 			$("#load-more").show()
+			$("#load-less").show()
 			var nextId = ''
 			console.log("[joinnearby] "+target+" data success " + result)
 			pointer = 0
@@ -214,6 +215,7 @@ function first() {
 		url: baseUrl + "/"+target+"/page?pageSize=10&r=" + Math.random(),
 		success: function( result ) {
 			$("#load-more").show()
+			$("#load-less").show()
 			var nextId = ''
 			console.log("[joinnearby] "+target+" data success " + result)
 			pointer = 0
@@ -237,6 +239,7 @@ function first() {
 			}
 			if(dataMap.length < 10) {
 				$("#load-more").hide()
+				$("#load-less").hide()
 			}
 			table = table + '</table>\n'
 			$("#pages-data").html(table)
