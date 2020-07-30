@@ -80,7 +80,71 @@ function loadless() {
 	console.log('less loaded')
 }
 function searchitem(text) {
-	alert("正在搜索...")
+	if(text.length < 2) {
+		console.log("请输入搜索词")
+		return
+	}
+	alert("正在搜索..." + text)
+	jQuery.ajax({
+		url: baseUrl + "/"+target+"/page?pageSize=10000&search="+text+"&r=" + Math.random(),
+		success: function( result ) {
+			$("#load-more").show()
+			$("#load-less").show()
+			var nextId = ''
+			console.log("[joinnearby] "+target+" data success " + result)
+			pointer = 0
+			dataMap = result.data
+			var table = '<table class="max-table">\n'
+			for(var i=0;i<dataMap.length;i++) {
+				var obj = dataMap[i]
+				table = table + '<tr data-itemid="'+i+'">\n'
+				for(var j=0;j<values.length;j++) {
+					var name = values[j].name
+					var id = name + '_' + i + 'th'
+					if(values[j].visible) {
+						table = table + '<td class="data-item" id="'+id+'">' + obj[name] + '</td>\n'
+					}
+					nextId = obj['hash']
+				}
+				table = table + '</tr>\n'
+			}
+			if(dataMap.length < 1) {
+				table = table + '<tr>Nothing to be shown</tr>'
+			}
+			if(dataMap.length < 10) {
+				$("#load-more").hide()
+				$("#load-less").hide()
+			}
+			table = table + '</table>\n'
+			$("#pages-data").html(table)
+			lastId.push(nextId)
+			console.log("lastId = " + lastId)
+
+			$("td.data-item").click(function() {
+				var tr = $(this).parent()
+				var itemid = tr.data('itemid')
+				console.log(itemid)
+				$("#modal-title").html('<button type="button" class="btn btn-warning" onclick="removeitem('+itemid +')"> 彻底删除</button><button type="button" class="btn btn-default" onclick="deleteitem('+itemid +')"> 删除</button>')
+
+				var index = parseInt(itemid)
+				var item = dataMap[index]
+
+				var itemhtml = '<table>'
+				for(var k=0;k<values.length;k++) {
+					var iname = values[k].name
+					var ivalue = values[k].value
+					var idata = item[iname]
+					itemhtml = itemhtml + '<tr><td><button onclick="updateitem(this, \'' + iname + '\',' + itemid + ')"> <span class="glyphicon glyphicon-edit"> </span> </button> </td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
+				}
+				itemhtml = itemhtml+'</table>'
+				$("#modal-body").html(itemhtml)
+				$("#the-modal").modal('show')
+			});
+		},
+		error: function( xhr, result, obj ) {
+			console.log("[joinnearby] "+target+" head error " + result)
+		}
+	})
 }
 function submitcreate() {
 	var createjson = {}
