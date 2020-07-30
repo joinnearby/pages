@@ -4,20 +4,20 @@ var title = ''
 var values = []
 var dataMap = []
 var lastId = ['']
-var pointer = 0
+var pageSize = 10
 //下一页
 function loadmore() {
 	console.log('load more')
 	var startId = lastId.pop()
 	lastId.push(startId)
 	jQuery.ajax({
-		url: baseUrl + "/"+target+"/page?pageSize=10&lastId="+startId+"&r=" + Math.random(),
+		url: baseUrl + "/"+target+"/page?pageSize="+pageSize+"&lastId="+startId+"&r=" + Math.random(),
 		success: function( result ) {
 			$("#load-more").show()
 			$("#load-less").show()
 			var nextId = ''
 			console.log("[joinnearby] "+target+" data success " + result)
-			pointer = 0
+
 			dataMap = result.data
 			var table = '<table class="max-table">\n'
 			for(var i=0;i<dataMap.length;i++) {
@@ -36,7 +36,7 @@ function loadmore() {
 			if(dataMap.length < 1) {
 				table = table + '<tr>Nothing to be shown</tr>'
 			}
-			if(dataMap.length < 10) {
+			if(dataMap.length < pageSize) {
 				$("#load-more").hide()
 			}
 			table = table + '</table>\n'
@@ -91,8 +91,8 @@ function searchitem(text) {
 			$("#load-more").hide()
 			$("#load-less").hide()
 
-			console.log("[joinnearby] "+target+" data success " + result)
-			pointer = 0
+			console.log("[joinnearby] "+target+" data success ")
+
 			dataMap = result.data
 			var table = '<table class="max-table">\n'
 			for(var i=0;i<dataMap.length;i++) {
@@ -150,9 +150,22 @@ function submitcreate() {
 		var item = items[i]
 		createjson[$(item).attr('name')] = $(item).val()
 	}
-	console.log(JSON.stringify(createjson))
-	alert("正在上传...")
-	$("#the-modal").modal("hide")
+
+	jQuery.post({
+		url: baseUrl + "/" + target + "/insert",
+		dataType: 'json',
+		contentType:'application/json',
+		data: JSON.stringify(createjson),
+		success: function (result) {
+			$("#the-modal").modal('hide')
+			window.location.reload();
+		},
+		error: function (xhr, result, obj) {
+			console.log("[joinnearby] " + target + " insert error " + result)
+		}
+	})
+
+
 }
 //创建记录
 function createitem() {
@@ -272,13 +285,13 @@ function updateitem(obj, iname, itemid) {
 function first() {
 	console.log('ajax data for ' + target)
 	jQuery.ajax({
-		url: baseUrl + "/"+target+"/page?pageSize=10&r=" + Math.random(),
+		url: baseUrl + "/"+target+"/page?pageSize="+pageSize+"&r=" + Math.random(),
 		success: function( result ) {
 			$("#load-more").show()
 			$("#load-less").show()
 			var nextId = ''
-			console.log("[joinnearby] "+target+" data success " + result)
-			pointer = 0
+			console.log("[joinnearby] "+target+" data success ")
+
 			dataMap = result.data
 			var table = '<table class="max-table">\n'
 			for(var i=0;i<dataMap.length;i++) {
@@ -297,7 +310,7 @@ function first() {
 			if(dataMap.length < 1) {
 				table = table + '<tr>Nothing to be shown</tr>'
 			}
-			if(dataMap.length < 10) {
+			if(dataMap.length < pageSize) {
 				$("#load-more").hide()
 				$("#load-less").hide()
 			}
