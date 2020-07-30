@@ -13,6 +13,7 @@ function loadmore() {
 	jQuery.ajax({
 		url: baseUrl + "/"+target+"/page?pageSize=10&lastId="+startId+"&r=" + Math.random(),
 		success: function( result ) {
+			$("#load-more").enable()
 			var nextId = ''
 			console.log("[joinnearby] "+target+" data success " + result)
 			pointer = 0
@@ -33,6 +34,9 @@ function loadmore() {
 			}
 			if(dataMap.length < 1) {
 				table = table + '<tr>Nothing to be shown</tr>'
+			}
+			if(dataMap.length < 10) {
+				$("#load-more").disable()
 			}
 			table = table + '</table>\n'
 			$("#pages-data").html(table)
@@ -209,6 +213,7 @@ function first() {
 	jQuery.ajax({
 		url: baseUrl + "/"+target+"/page?pageSize=10&r=" + Math.random(),
 		success: function( result ) {
+			$("#load-more").enable()
 			var nextId = ''
 			console.log("[joinnearby] "+target+" data success " + result)
 			pointer = 0
@@ -229,6 +234,9 @@ function first() {
 			}
 			if(dataMap.length < 1) {
 				table = table + '<tr>Nothing to be shown</tr>'
+			}
+			if(dataMap.length < 10) {
+				$("#load-more").disable()
 			}
 			table = table + '</table>\n'
 			$("#pages-data").html(table)
