@@ -78,6 +78,7 @@ function loadless() {
 	loadmore()
 	console.log('less loaded')
 }
+//搜索关键词
 function searchitem(text) {
 	if(text.length < 2) {
 		console.log("请输入搜索词")
@@ -140,6 +141,7 @@ function searchitem(text) {
 		}
 	})
 }
+//提交新增
 function submitcreate() {
 	var createjson = {}
 	var items = $(".create-item")
@@ -152,7 +154,7 @@ function submitcreate() {
 	alert("正在上传...")
 	$("#the-modal").modal("hide")
 }
-
+//创建记录
 function createitem() {
 	if(values.length < 1) {
 		console.log('头部信息为空，无法新增')
