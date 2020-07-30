@@ -10,10 +10,60 @@ function loadmore() {
 	console.log('load more')
 	var startId = lastId.pop()
 	lastId.push(startId)
+	jQuery.ajax({
+		url: baseUrl + "/"+target+"/page?pageSize=10&lastId="+startId+"&r=" + Math.random(),
+		success: function( result ) {
+			var nextId = ''
+			console.log("[joinnearby] "+target+" data success " + result)
+			pointer = 0
+			dataMap = result.data
+			var table = '<table class="max-table">\n'
+			for(var i=0;i<dataMap.length;i++) {
+				var obj = dataMap[i]
+				table = table + '<tr data-itemid="'+i+'">\n'
+				for(var j=0;j<values.length;j++) {
+					var name = values[j].name
+					var id = name + '_' + i + 'th'
+					if(values[j].visible) {
+						table = table + '<td class="data-item" id="'+id+'">' + obj[name] + '</td>\n'
+					}
+					nextId = obj['hash']
+				}
+				table = table + '</tr>\n'
+			}
+			if(dataMap.length < 1) {
+				table = table + '<tr>Nothing to be shown</tr>'
+			}
+			table = table + '</table>\n'
+			$("#pages-data").html(table)
+			lastId.push(nextId)
+			console.log("lastId = " + lastId)
 
-	//TODO load
+			$("td.data-item").click(function() {
+				var tr = $(this).parent()
+				var itemid = tr.data('itemid')
+				console.log(itemid)
+				$("#modal-title").html('<button type="button" class="btn btn-warning" onclick="removeitem('+itemid +')"> 彻底删除</button><button type="button" class="btn btn-default" onclick="deleteitem('+itemid +')"> 删除</button>')
 
-	lastId.push('new lastId')
+				var index = parseInt(itemid)
+				var item = dataMap[index]
+
+				var itemhtml = '<table>'
+				for(var k=0;k<values.length;k++) {
+					var iname = values[k].name
+					var ivalue = values[k].value
+					var idata = item[iname]
+					itemhtml = itemhtml + '<tr><td><button onclick="updateitem(this, \'' + iname + '\',' + itemid + ')"> <span class="glyphicon glyphicon-edit"> </span> </button> </td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
+				}
+				itemhtml = itemhtml+'</table>'
+				$("#modal-body").html(itemhtml)
+				$("#the-modal").modal('show')
+			});
+		},
+		error: function( xhr, result, obj ) {
+			console.log("[joinnearby] "+target+" head error " + result)
+		}
+	})
 	console.log('more loaded')
 }
 //上一页
@@ -23,6 +73,40 @@ function loadless() {
 	console.log('remove no use lastId: ' + nouse)
 	loadmore()
 	console.log('less loaded')
+}
+function searchitem(text) {
+	alert("正在搜索...")
+}
+function submitcreate() {
+	var createjson = {}
+	var items = $(".create-item")
+	for(var i=0;i<items.length;i++)
+	{
+		var item = items[i]
+		createjson[$(item).attr('name')] = $(item).val()
+	}
+	console.log(JSON.stringify(createjson))
+	alert("正在上传...")
+	$("#the-modal").modal("hide")
+}
+
+function createitem() {
+	if(values.length < 1) {
+		console.log('头部信息为空，无法新增')
+	}
+	$("#the-modal").modal("show")
+	$(".modal-title").html("<button onclick='submitcreate()'>新增 <span class='glyphicon glyphicon-send'></span></button>")
+
+	txt = '<table class="min-table">'
+	for(var i=0;i<values.length;i++) {
+		var obj = values[i]
+		var name = obj.name
+		var value = obj.value
+		console.log(name + ' = ' + value)
+		txt = txt + '<tr><td> ' + value + '</td><td> <input type="text" class="create-item" name="'+name+'" value=""/><td></tr>'
+	}
+	txt = txt + '</table>'
+	$(".modal-body").html(txt)
 }
 //彻底删除记录
 function removeitem(itemid) {
