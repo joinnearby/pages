@@ -29,7 +29,7 @@ function loadmore() {
 					if(values[j].visible) {
 						table = table + '<td class="data-item" id="'+id+'">' + obj[name] + '</td>\n'
 					}
-					nextId = obj['hash']
+					nextId = obj['id']
 				}
 				table = table + '</tr>\n'
 			}
@@ -303,7 +303,7 @@ function first() {
 					if(values[j].visible) {
 						table = table + '<td class="data-item" id="'+id+'">' + obj[name] + '</td>\n'
 					}
-					nextId = obj['hash']
+					nextId = obj['id']
 				}
 				table = table + '</tr>\n'
 			}
