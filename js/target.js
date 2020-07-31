@@ -73,8 +73,8 @@ function loadmore() {
 //上一页
 function loadless() {
 	console.log('load less')
-	var nouse = lastId.pop()
-	console.log('remove no use lastId: ' + nouse)
+	console.log('remove no use lastId: ' + lastId.pop())
+	console.log('remove no use lastId: ' + lastId.pop())
 	loadmore()
 	console.log('less loaded')
 }
