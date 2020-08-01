@@ -148,7 +148,11 @@ function submitcreate() {
 	for(var i=0;i<items.length;i++)
 	{
 		var item = items[i]
-		createjson[$(item).attr('name')] = $(item).val()
+		var name = $(item).attr('name')
+		var value = $(item).val()
+		if(value && value.length > 0) {
+			createjson[name] = value
+		}
 	}
 
 	jQuery.post({
