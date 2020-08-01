@@ -5,6 +5,7 @@ var values = []
 var dataMap = []
 var lastId = ['']
 var pageSize = 10
+var readonlySet = ['sn', 'hash', 'deleted', 'create_time', 'update_time']
 //下一页
 function loadmore() {
 	console.log('load more')
@@ -184,7 +185,10 @@ function createitem() {
 		var obj = values[i]
 		var name = obj.name
 		var value = obj.value
-		console.log(name + ' = ' + value)
+		if(readonlySet.indexOf(name) > -1) {
+			console.log('ignore this ' + name)
+			continue
+		}
 		txt = txt + '<tr><td> ' + value + '</td><td> <input type="text" class="create-item" name="'+name+'" value=""/><td></tr>'
 	}
 	txt = txt + '</table>'
