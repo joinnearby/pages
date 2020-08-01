@@ -186,7 +186,6 @@ function createitem() {
 		var name = obj.name
 		var value = obj.value
 		if(readonlySet.indexOf(name) > -1) {
-			console.log('ignore this ' + name)
 			continue
 		}
 		txt = txt + '<tr><td> ' + value + '</td><td> <input type="text" class="create-item" name="'+name+'" value=""/><td></tr>'
@@ -365,7 +364,6 @@ function head() {
 			values = data.values
 			var table = '<table class="max-table"><tr>\n'
 			for(var i=0;i<values.length;i++) {
-				console.log("append " + JSON.stringify(values[i]))
 				if(values[i].visible) {
 					table = table + '<td>' + values[i].value + '</td>\n'
 				}
