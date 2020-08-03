@@ -1,5 +1,5 @@
 var host = "http://suppresswarnings.com/"
-var ids = [ "ul", "u", "ur", "mr", "dr", "d", "dl", "ml" ]
+var ids = ["u", "ur", "mr", "dr", "d", "dl", "ml",  "ul"]
 var index = 0
 var forever = 10000
 var limited = 10000
