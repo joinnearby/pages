@@ -286,11 +286,27 @@ function updateitem(obj, iname, itemid) {
 	var id = iname + '_' + itemid
 	console.log('updateitem: ' + id)
 	var td = $(obj).parent()
-	var input = $(td).siblings()[1]
-	var text = $(input).text()
-	var width = $(input).css('width')
-	$(td).css('background', '#22be73')
-	$(input).html('<input type="text" style="width: '+width+'" id="'+id+'" name="update" value="'+text+'"/><button type="button" onclick="submititem(\'' + iname + '\',' + itemid + ')"><span class="glyphicon glyphicon-ok-circle"></span></button>')
+	var span = $(obj).find('glyphicon')[0];
+	if($(span).hasClass('glyphicon-edit')) {
+		var input = $(td).siblings()[1]
+		var text = $(input).text()
+		var width = $(input).css('width')
+		$(td).css('background', '#22be73')
+		$(input).html('<input type="text" style="width: '+width+'" id="'+id+'" name="update" value="'+text+'"/><button type="button" onclick="submititem(\'' + iname + '\',' + itemid + ')"><span class="glyphicon glyphicon-ok-circle"></span></button>')
+		$(span).removeClass('glyphicon-edit')
+		$(span).addClass('glyphicon-log-out')
+	}
+
+	if($(span).hasClass('glyphicon-log-out')) {
+		var index = parseInt(itemid)
+		var item = dataMap[index]
+		var text = item[iname]
+		$(td).css('background', '')
+		$(input).text(text)
+		$(span).removeClass('glyphicon-log-out')
+		$(span).addClass('glyphicon-edit')
+	}
+
 }
 //加载第一页数据
 function first() {
