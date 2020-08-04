@@ -70,7 +70,7 @@
       </div>
       <div class="collapse navbar-collapse bs-example-js-navbar-collapse">
         <ul class="nav navbar-nav">
-            <li class="stream"><a href="#stream" onclick="page('stream')">视频管理</a></li>
+            <li class="stream active"><a href="#stream" onclick="page('stream')">视频管理</a></li>
             <li class="tags"><a href="#tags" onclick="page('tags')">标签管理</a></li>
             <li class="actress"><a href="#actress" onclick="page('actress')">女演员管理</a></li>
             <li class="producer"><a href="#producer" onclick="page('producer')">制造商管理</a></li>
@@ -153,29 +153,6 @@
 <script type="text/javascript" src="js/jweixin-1.2.0.js"></script>
 <script type="text/javascript" src="js/suppresswarnings.js"></script>
 <script>
-    function active() {
-        console.log("this is going to active")
-        $(".navbar-nav").find("li").each(function () {
-            var a = $(this).find("a:first")[0];
-            if ($(a).attr("href") === location.hash) {
-                console.log("this one is active")
-            } else {
-                $(this).removeClass("active");
-            }
-        })
-    }
-    $(function () {
-        $(".navbar-nav").find("li").each(function () {
-            var a = $(this).find("a:first")[0];
-            console.log($(a).attr("href"))
-            console.log(location.hash)
-            $(this).click(function () {
-                $(this).addClass("active");
-                setTimeout(active, 200)
-            })
-        });
-    })
-
 
     $("#create").hide()
     $("#search-btn").click(function() {
@@ -204,6 +181,33 @@
     }
 
     page(target)
+    function active() {
+        console.log("this is going to active")
+        $(".navbar-nav").find("li").each(function () {
+            var a = $(this).find("a:first")[0];
+            if ($(a).attr("href") === location.hash) {
+                console.log("this one is active")
+            } else {
+                $(this).removeClass("active");
+            }
+        })
+    }
+    $(function () {
+        $(".navbar-nav").find("li").each(function () {
+            var a = $(this).find("a:first")[0];
+            if ($(a).attr("href") === location.hash) {
+                $(this).addClass("active");
+            } else {
+                $(this).removeClass("active");
+            }
+            $(this).click(function () {
+                $(this).addClass("active");
+                setTimeout(active, 200)
+            })
+        });
+    })
+
+
 </script>
 </body>
 </html>
