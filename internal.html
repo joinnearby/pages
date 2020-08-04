@@ -37,6 +37,9 @@
           min-width: 210px;
           min-height: 36px;
       }
+      .warning {
+          background: #ff5f40
+      }
   </style>
 </head>
 <body>
@@ -150,6 +153,30 @@
 <script type="text/javascript" src="js/jweixin-1.2.0.js"></script>
 <script type="text/javascript" src="js/suppresswarnings.js"></script>
 <script>
+    function active() {
+        console.log("this is going to active")
+        $(".navbar-nav").find("li").each(function () {
+            var a = $(this).find("a:first")[0];
+            if ($(a).attr("href") === location.hash) {
+                console.log("this one is active")
+            } else {
+                $(this).removeClass("active");
+            }
+        })
+    }
+    $(function () {
+        $(".navbar-nav").find("li").each(function () {
+            var a = $(this).find("a:first")[0];
+            console.log($(a).attr("href"))
+            console.log(location.hash)
+            $(this).click(function () {
+                $(this).addClass("active");
+                setTimeout(active, 200)
+            })
+        });
+    })
+
+
     $("#create").hide()
     $("#search-btn").click(function() {
         var value = $("#search").val()

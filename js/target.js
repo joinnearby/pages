@@ -79,13 +79,15 @@ function loadless() {
 	loadmore()
 	console.log('less loaded')
 }
+function highlight(obj) {
+	$(obj).css()
+}
 //搜索关键词
 function searchitem(text) {
 	if(text.length < 2) {
 		console.log("请输入搜索词")
 		return
 	}
-	alert("正在搜索..." + text)
 	jQuery.ajax({
 		url: baseUrl + "/"+target+"/page?pageSize=10000&search="+text+"&r=" + Math.random(),
 		success: function( result ) {
@@ -146,6 +148,7 @@ function searchitem(text) {
 function submitcreate() {
 	var createjson = {}
 	var items = $(".create-item")
+	var allValue = ''
 	for(var i=0;i<items.length;i++)
 	{
 		var item = items[i]
@@ -153,23 +156,24 @@ function submitcreate() {
 		var value = $(item).val()
 		if(value && value.length > 0) {
 			createjson[name] = value
+			allValue = allValue + value
 		}
 	}
-
-	jQuery.post({
-		url: baseUrl + "/" + target + "/insert",
-		dataType: 'json',
-		contentType:'application/json',
-		data: JSON.stringify(createjson),
-		success: function (result) {
-			$("#the-modal").modal('hide')
-			window.location.reload();
-		},
-		error: function (xhr, result, obj) {
-			console.log("[joinnearby] " + target + " insert error " + result)
-		}
-	})
-
+	if(allValue.length > 1) {
+		jQuery.post({
+			url: baseUrl + "/" + target + "/insert",
+			dataType: 'json',
+			contentType:'application/json',
+			data: JSON.stringify(createjson),
+			success: function (result) {
+				$("#the-modal").modal('hide')
+				window.location.reload();
+			},
+			error: function (xhr, result, obj) {
+				console.log("[joinnearby] " + target + " insert error " + result)
+			}
+		})
+	}
 
 }
 //创建记录
