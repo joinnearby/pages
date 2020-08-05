@@ -84,9 +84,8 @@ function highlight(obj) {
 }
 //搜索关键词
 function searchitem(text) {
-	if(text.length < 2) {
-		console.log("请输入搜索词")
-		return
+	if(text.length < 1) {
+		window.location.reload();
 	}
 	jQuery.ajax({
 		url: baseUrl + "/"+target+"/page?pageSize=10000&search="+text+"&r=" + Math.random(),
