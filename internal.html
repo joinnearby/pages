@@ -161,6 +161,13 @@
         searchitem(value)
     });
 
+    $('#search').bind('keyup', function(event) {
+        if (event.keyCode == "13") {
+            //回车执行查询
+            $('#search-btn').click();
+        }
+    });
+
     $("#create").click(function() {
         console.log('新增记录，先判断是否存在数据，否则不让新增？' + target)
         createitem()
