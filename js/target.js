@@ -286,9 +286,9 @@ function updateitem(obj, iname, itemid) {
 	var id = iname + '_' + itemid
 	console.log('updateitem: ' + id)
 	var td = $(obj).parent()
+	var input = $(td).siblings()[1]
 	var span = $(obj).find('span')[0];
 	if($(span).hasClass('glyphicon-edit')) {
-		var input = $(td).siblings()[1]
 		var text = $(input).text()
 		var width = $(input).css('width')
 		$(td).css('background', '#22be73')
