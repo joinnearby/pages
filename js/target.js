@@ -287,7 +287,7 @@ function updateitem(obj, iname, itemid) {
 	console.log('updateitem: ' + id)
 	var td = $(obj).parent()
 	var span = $(obj).find('glyphicon')[0];
-	if(span.hasClass('glyphicon-edit')) {
+	if($(span).hasClass('glyphicon-edit')) {
 		var input = $(td).siblings()[1]
 		var text = $(input).text()
 		var width = $(input).css('width')
@@ -295,7 +295,7 @@ function updateitem(obj, iname, itemid) {
 		$(input).html('<input type="text" style="width: '+width+'" id="'+id+'" name="update" value="'+text+'"/><button type="button" onclick="submititem(\'' + iname + '\',' + itemid + ')"><span class="glyphicon glyphicon-ok-circle"></span></button>')
 		$(span).removeClass('glyphicon-edit')
 		$(span).addClass('glyphicon-log-out')
-	} else if(span.hasClass('glyphicon-log-out')) {
+	} else if($(span).hasClass('glyphicon-log-out')) {
 		var index = parseInt(itemid)
 		var item = dataMap[index]
 		var text = item[iname]
