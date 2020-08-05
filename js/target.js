@@ -84,9 +84,8 @@ function highlight(obj) {
 }
 //搜索关键词
 function searchitem(text) {
-	if(text.length < 2) {
-		console.log("请输入搜索词")
-		return
+	if(text.length < 1) {
+		window.location.reload();
 	}
 	jQuery.ajax({
 		url: baseUrl + "/"+target+"/page?pageSize=10000&search="+text+"&r=" + Math.random(),
@@ -286,23 +285,21 @@ function updateitem(obj, iname, itemid) {
 	var id = iname + '_' + itemid
 	console.log('updateitem: ' + id)
 	var td = $(obj).parent()
-	var span = $(obj).find('glyphicon')[0];
+	var input = $(td).siblings()[1]
+	var span = $(obj).find('span')[0];
 	if($(span).hasClass('glyphicon-edit')) {
-		var input = $(td).siblings()[1]
 		var text = $(input).text()
 		var width = $(input).css('width')
 		$(td).css('background', '#22be73')
 		$(input).html('<input type="text" style="width: '+width+'" id="'+id+'" name="update" value="'+text+'"/><button type="button" onclick="submititem(\'' + iname + '\',' + itemid + ')"><span class="glyphicon glyphicon-ok-circle"></span></button>')
 		$(span).removeClass('glyphicon-edit')
 		$(span).addClass('glyphicon-log-out')
-	}
-
-	if($(span).hasClass('glyphicon-log-out')) {
+	} else if($(span).hasClass('glyphicon-log-out')) {
 		var index = parseInt(itemid)
 		var item = dataMap[index]
 		var text = item[iname]
 		$(td).css('background', '')
-		$(input).text(text)
+		$(input).html('<td>' + text + '</td>')
 		$(span).removeClass('glyphicon-log-out')
 		$(span).addClass('glyphicon-edit')
 	}
