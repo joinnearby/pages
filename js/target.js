@@ -300,7 +300,7 @@ function updateitem(obj, iname, itemid) {
 		var item = dataMap[index]
 		var text = item[iname]
 		$(td).css('background', '')
-		$(input).text(text)
+		$(input).html('<td>' + text + '</td>')
 		$(span).removeClass('glyphicon-log-out')
 		$(span).addClass('glyphicon-edit')
 	}
