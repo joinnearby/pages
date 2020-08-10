@@ -92,7 +92,7 @@ function searchitem(text) {
 		success: function( result ) {
 			$("#load-more").hide()
 			$("#load-less").hide()
-
+			$("#search").val('')
 			console.log("[joinnearby] "+target+" data success ")
 
 			dataMap = result.data
@@ -276,6 +276,11 @@ function submititem(iname, itemid) {
 	//update btn color
 	var obj = $(td).siblings()[0]
 	$(obj).css('background', '')
+	var span = $(obj).find('span')[0];
+	if($(span).hasClass('glyphicon-log-out')) {
+		$(span).removeClass('glyphicon-log-out')
+		$(span).addClass('glyphicon-edit')
+	}
 	//update page
 	updatetable(iname, itemid, value)
 	updatedata(iname, itemid, value)
