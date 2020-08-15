@@ -289,6 +289,7 @@ function submititem(iname, itemid) {
 function updateitem(obj, iname, itemid) {
 	var id = iname + '_' + itemid
 	console.log('updateitem: ' + id)
+
 	var td = $(obj).parent()
 	var input = $(td).siblings()[1]
 	var span = $(obj).find('span')[0];
@@ -374,9 +375,20 @@ function first() {
 		}
 	})
 }
+function login() {
+	console.log("login ... ... ...")
+  //show modal
+	//ajax login
+	//if ok setup ajax header
+	//else show modal
+	//$.ajaxSetup({
+	//      header:{token:token}
+	// });
+}
 //加载头部信息
 function head() {
 	console.log('ajax head for ' + target)
+	document.cookie="username=John Doe";
 	jQuery.ajax({
 	    url: baseUrl + "/pages/head/"+target+"?r=" + Math.random(),
 	    success: function( result ) {
@@ -406,6 +418,8 @@ $("#pages-head").html('')
 $("#pages-data").html('')
 
 $(document).ready(function(){
+	var cool = document.cookie;
+	console.log(cool)
+	alert(cool)
 	head()
-
 });
