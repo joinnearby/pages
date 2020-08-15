@@ -384,11 +384,18 @@ function login() {
 	//$.ajaxSetup({
 	//      header:{token:token}
 	// });
+	$("#modal-title").html('<button type="button" class="btn btn-warning" onclick="submitlogin()"> Login </button>')
+	var itemhtml = '<table>'
+	itemhtml = itemhtml + '<tr><td>Username</td><td><input type="text" id="username" value="" placeholder="用户名："></td></tr>'
+	itemhtml = itemhtml + '<tr><td>Password</td><td><input type="password" id="password" value="" placeholder="密   码："></td></tr>'
+	itemhtml = itemhtml+'</table>'
+	$("#modal-body").html(itemhtml)
+	$("#the-modal").modal('show')
 }
 //加载头部信息
 function head() {
 	console.log('ajax head for ' + target)
-	document.cookie="username=John Doe";
+	setCookie("token", "Dmingo")
 	jQuery.ajax({
 	    url: baseUrl + "/pages/head/"+target+"?r=" + Math.random(),
 	    success: function( result ) {
@@ -418,7 +425,7 @@ $("#pages-head").html('')
 $("#pages-data").html('')
 
 $(document).ready(function(){
-	var cool = document.cookie;
+	var cool = getCookie("token")
 	console.log(cool)
 	alert(cool)
 	head()
