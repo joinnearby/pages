@@ -1,5 +1,6 @@
 var baseUrl = "/cloud/internal"
 var updateUrl = "/cloud/internal/pages/update"
+var loginUrl = "/user/login"
 var title = ''
 var values = []
 var dataMap = []
@@ -375,6 +376,33 @@ function first() {
 		}
 	})
 }
+function submitlogin() {
+	var loginjson = {}
+	loginjson["username"] = $("#username").val()
+	loginjson["password"] = $("#password").val()
+	$("#username").val('')
+	$("#password").val('')
+	jQuery.post({
+		url: loginUrl,
+		dataType: 'json',
+		contentType:'application/json',
+		data: JSON.stringify(loginjson),
+		success: function (result) {
+			$("#the-modal").modal('hide')
+			if(result.state == 200) {
+			    var token = result.data
+				setCookie("token", token)
+				$.ajaxSetup({
+					header:{token:token}
+				});
+			}
+			window.location.reload();
+		},
+		error: function (xhr, result, obj) {
+			console.log("[joinnearby] " + target + " insert error " + result)
+		}
+	})
+}
 function login() {
 	console.log("login ... ... ...")
   //show modal
@@ -426,7 +454,9 @@ $("#pages-data").html('')
 
 $(document).ready(function(){
 	var cool = getCookie("token")
-	console.log(cool)
-	alert(cool)
-	head()
+	if(cool == null || cool == undefined || cool == '') {
+		login()
+	} else {
+		head()
+	}
 });
