@@ -423,7 +423,6 @@ function login() {
 //加载头部信息
 function head() {
 	console.log('ajax head for ' + target)
-	setCookie("token", "Dmingo")
 	jQuery.ajax({
 	    url: baseUrl + "/pages/head/"+target+"?r=" + Math.random(),
 	    success: function( result ) {
