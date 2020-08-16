@@ -453,6 +453,7 @@ $("#pages-data").html('')
 
 $(document).ready(function(){
 	var cool = getCookie("token")
+	console.log('cookie='+cool)
 	if(cool == null || cool === '') {
 		login()
 	} else {
