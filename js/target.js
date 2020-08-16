@@ -454,7 +454,7 @@ $("#pages-data").html('')
 
 $(document).ready(function(){
 	var cool = getCookie("token")
-	if(cool == null || cool == undefined || cool == '') {
+	if(cool == null || cool === '') {
 		login()
 	} else {
 		head()
