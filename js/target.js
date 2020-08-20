@@ -419,6 +419,19 @@ function login() {
 	itemhtml = itemhtml+'</table>'
 	$("#modal-body").html(itemhtml)
 	$("#the-modal").modal('show')
+	$('#username').bind('keyup', function(event) {
+		if (event.keyCode == "13") {
+			//回车下一步
+			$('#password').focus();
+		}
+	});
+
+	$('#password').bind('keyup', function(event) {
+		if (event.keyCode == "13") {
+			//回车login
+			submitlogin();
+		}
+	});
 }
 //加载头部信息
 function head() {
