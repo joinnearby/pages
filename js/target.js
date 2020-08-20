@@ -380,6 +380,10 @@ function submitlogin() {
 	var loginjson = {}
 	loginjson["username"] = $("#username").val()
 	loginjson["password"] = $("#password").val()
+	if(loginjson["username"].length < 1 || loginjson["password"].length < 1) {
+		console.log("you kidding me?")
+		return;
+	}
 	$("#username").val('')
 	$("#password").val('')
 	jQuery.post({
