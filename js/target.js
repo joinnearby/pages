@@ -401,12 +401,6 @@ function submitlogin() {
 			if(result.state == 200) {
 			    var token = result.data
 				setCookie("token", token)
-				$("#log-out").show()
-				$("#log-out").click(function () {
-					delCookie('token')
-					$("#log-out").hide()
-					window.location.reload();
-				})
 				$.ajaxSetup({
 					header:{token:token}
 				});
@@ -485,6 +479,12 @@ $(document).ready(function(){
 	if(cool == null || cool === '') {
 		login()
 	} else {
+		$("#log-out").show()
+		$("#log-out").click(function () {
+			delCookie('token')
+			$("#log-out").hide()
+			window.location.reload();
+		})
 		head()
 	}
 });

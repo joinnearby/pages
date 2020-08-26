@@ -66,7 +66,7 @@
             <path id="svg_dr" d="M16 14 L16 18" style="fill:white;stroke:#22be73;stroke-width:4"/>
             <text x="25" y="17" fill="#22be73" id="inviteTitle">数据之门</text>
         </svg>
-            <div id="log-out" style="float:right;"><span class="glyphicon glyphicon-log-out"></span></div>
+            <span id="log-out" style="float:right;" class="glyphicon glyphicon-log-out"></span>
         </a>
       </div>
       <div class="collapse navbar-collapse bs-example-js-navbar-collapse">
@@ -156,7 +156,6 @@
 <script>
 
     $("#create").hide()
-    $("#log-out").hide()
     $("#search-btn").click(function() {
         var value = $("#search").val()
         console.log('搜索全文: ' + value)
