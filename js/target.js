@@ -11,6 +11,10 @@ var readonlySet = ['sn', 'hash', 'deleted', 'create_time', 'update_time']
 function loadmore() {
 	console.log('load more')
 	var startId = lastId.pop()
+	if (startId === undefined) {
+		console.log('no more pages')
+		return
+	}
 	lastId.push(startId)
 	jQuery.ajax({
 		url: baseUrl + "/"+target+"/page?pageSize="+pageSize+"&lastId="+startId+"&r=" + Math.random(),
@@ -376,6 +380,7 @@ function first() {
 		}
 	})
 }
+
 function submitlogin() {
 	var loginjson = {}
 	loginjson["username"] = $("#username").val()
@@ -396,6 +401,12 @@ function submitlogin() {
 			if(result.state == 200) {
 			    var token = result.data
 				setCookie("token", token)
+				$("#log-out").show()
+				$("#log-out").click(function () {
+					delCookie('token')
+					$("#log-out").hide()
+					window.location.reload();
+				})
 				$.ajaxSetup({
 					header:{token:token}
 				});
