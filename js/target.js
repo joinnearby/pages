@@ -131,7 +131,7 @@ function searchitem(text) {
 				var index = parseInt(itemid)
 				var item = dataMap[index]
 
-				var itemhtml = '<table>'
+				var itemhtml = '<table class="min-table">'
 				for(var k=0;k<values.length;k++) {
 					var iname = values[k].name
 					var ivalue = values[k].value
