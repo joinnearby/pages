@@ -12,8 +12,7 @@ function loadmore() {
 	console.log('load more')
 	var startId = lastId.pop()
 	if (startId === undefined) {
-		console.log('no more pages')
-		return
+		startId = ''
 	}
 	lastId.push(startId)
 	jQuery.ajax({
@@ -80,6 +79,10 @@ function loadmore() {
 function loadless() {
 	console.log('load less')
 	console.log('remove no use lastId: ' + lastId.pop())
+	if( lastId.length < 1) {
+		console.log('we are in the first page right now!')
+		return
+	}
 	console.log('remove no use lastId: ' + lastId.pop())
 	loadmore()
 	console.log('less loaded')
