@@ -79,11 +79,12 @@ function loadmore() {
 function loadless() {
 	console.log('load less')
 	console.log('remove no use lastId: ' + lastId.pop())
+	console.log('remove no use lastId: ' + lastId.pop())
 	if( lastId.length < 1) {
 		console.log('we are in the first page right now!')
+		$("#load-less").hide()
 		return
 	}
-	console.log('remove no use lastId: ' + lastId.pop())
 	loadmore()
 	console.log('less loaded')
 }
@@ -326,7 +327,7 @@ function first() {
 		url: baseUrl + "/"+target+"/page?pageSize="+pageSize+"&r=" + Math.random(),
 		success: function( result ) {
 			$("#load-more").show()
-			$("#load-less").show()
+			$("#load-less").hide()
 			var nextId = ''
 			console.log("[joinnearby] "+target+" data success ")
 
