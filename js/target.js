@@ -80,7 +80,7 @@ function loadless() {
 	console.log('load less')
 	console.log('remove no use lastId: ' + lastId.pop())
 	console.log('remove no use lastId: ' + lastId.pop())
-	if( lastId.length < 3) {
+	if( lastId.length < 2) {
 		console.log('we are in the first page right now!')
 		$("#load-less").hide()
 		return
