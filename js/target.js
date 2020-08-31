@@ -44,6 +44,10 @@ function loadmore() {
 			if(dataMap.length < pageSize) {
 				$("#load-more").hide()
 			}
+			if(lastId.length < 2) {
+				console.log('we are in the first page right now!')
+				$("#load-less").hide()
+			}
 			table = table + '</table>\n'
 			$("#pages-data").html(table)
 			lastId.push(nextId)
@@ -81,11 +85,6 @@ function loadless() {
 	console.log('remove no use lastId: ' + lastId.pop())
 	console.log('remove no use lastId: ' + lastId.pop())
 	loadmore()
-	if( lastId.length < 2) {
-		console.log('we are in the first page right now!')
-		$("#load-less").hide()
-		return
-	}
 	console.log('less loaded')
 }
 function highlight(obj) {
