@@ -161,8 +161,29 @@ function searchitem(text) {
 				for(var k=0;k<values.length;k++) {
 					var iname = values[k].name
 					var ivalue = values[k].value
+					var ireadonly = values[k].readonly
+					var itype = values[k].type
 					var idata = item[iname]
-					itemhtml = itemhtml + '<tr><td><button onclick="updateitem(this, \'' + iname + '\',' + itemid + ')"> <span class="glyphicon glyphicon-edit"> </span> </button> </td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
+					if(ireadonly === 'readonly') {
+						itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
+					} else {
+						if(itype === "case") {
+							var ichoise = values[k].choise
+							var options = ''
+							for(var i=0;i<ichoise.length;i++) {
+								var kv = ichoise[i]
+								if(idata === kv.key) {
+									options = options + '<option value="'+kv.key+'" selected>'+kv.value+'</option>'
+								} else {
+									options = options + '<option value="'+kv.key+'">'+kv.value+'</option>'
+								}
+							}
+							var select = '<select class="select">' + options + '</select>'
+							itemhtml = itemhtml + '<tr><td><button onclick="updateitem(this, \'' + iname + '\',' + itemid + ')"> <span class="glyphicon glyphicon-edit"> </span> </button> </td><td>' + ivalue + '</td><td>' + select + '</td></tr>'
+						} else {
+							itemhtml = itemhtml + '<tr><td><button onclick="updateitem(this, \'' + iname + '\',' + itemid + ')"> <span class="glyphicon glyphicon-edit"> </span> </button> </td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
+						}
+					}
 				}
 				itemhtml = itemhtml+'</table>'
 				$("#modal-body").html(itemhtml)
@@ -340,7 +361,11 @@ function updateitem(obj, iname, itemid) {
 		$(span).removeClass('glyphicon-log-out')
 		$(span).addClass('glyphicon-edit')
 	}
-
+	$('#password' + id).bind('keyup', function(event) {
+		if (event.keyCode == "13") {
+			submititem(iname, itemid)
+		}
+	});
 }
 //加载第一页数据
 function first() {
@@ -393,8 +418,29 @@ function first() {
 				for(var k=0;k<values.length;k++) {
 					var iname = values[k].name
 					var ivalue = values[k].value
+					var ireadonly = values[k].readonly
+					var itype = values[k].type
 					var idata = item[iname]
-					itemhtml = itemhtml + '<tr><td><button onclick="updateitem(this, \'' + iname + '\',' + itemid + ')"> <span class="glyphicon glyphicon-edit"> </span> </button> </td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
+					if(ireadonly === 'readonly') {
+						itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
+					} else {
+						if(itype === "case") {
+							var ichoise = values[k].choise
+							var options = ''
+							for(var i=0;i<ichoise.length;i++) {
+								var kv = ichoise[i]
+								if(idata === kv.key) {
+									options = options + '<option value="'+kv.key+'" selected>'+kv.value+'</option>'
+								} else {
+									options = options + '<option value="'+kv.key+'">'+kv.value+'</option>'
+								}
+							}
+							var select = '<select class="select">' + options + '</select>'
+							itemhtml = itemhtml + '<tr><td><button onclick="updateitem(this, \'' + iname + '\',' + itemid + ')"> <span class="glyphicon glyphicon-edit"> </span> </button> </td><td>' + ivalue + '</td><td>' + select + '</td></tr>'
+						} else {
+							itemhtml = itemhtml + '<tr><td><button onclick="updateitem(this, \'' + iname + '\',' + itemid + ')"> <span class="glyphicon glyphicon-edit"> </span> </button> </td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
+						}
+					}
 				}
 				itemhtml = itemhtml+'</table>'
 				$("#modal-body").html(itemhtml)
