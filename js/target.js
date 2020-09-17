@@ -66,9 +66,10 @@ function loadmore() {
 				for(var k=0;k<values.length;k++) {
 					var iname = values[k].name
 					var ivalue = values[k].value
+					var ireadonly = values[k].readonly
 					var itype = values[k].type
 					var idata = item[iname]
-					if(itype === 'readonly') {
+					if(ireadonly) {
 						itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
 					} else {
 						if(itype === "case") {
@@ -160,9 +161,10 @@ function searchitem(text) {
 				for(var k=0;k<values.length;k++) {
 					var iname = values[k].name
 					var ivalue = values[k].value
+					var ireadonly = values[k].readonly
 					var itype = values[k].type
 					var idata = item[iname]
-					if(itype === 'readonly') {
+					if(ireadonly) {
 						itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
 					} else {
 						if(itype === "case") {
@@ -416,9 +418,10 @@ function first() {
 				for(var k=0;k<values.length;k++) {
 					var iname = values[k].name
 					var ivalue = values[k].value
+					var ireadonly = values[k].readonly
 					var itype = values[k].type
 					var idata = item[iname]
-					if(itype === 'readonly') {
+					if(ireadonly) {
 						itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
 					} else {
 						if(itype === "case") {
