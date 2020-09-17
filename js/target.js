@@ -52,6 +52,7 @@ function loadmore() {
 			$("#pages-data").html(table)
 			lastId.push(nextId)
 			console.log("lastId = " + lastId)
+			// 点击一条弹出一筐
 			$("td.data-item").click(function() {
 				var tr = $(this).parent()
 				var itemid = tr.data('itemid')
@@ -65,8 +66,29 @@ function loadmore() {
 				for(var k=0;k<values.length;k++) {
 					var iname = values[k].name
 					var ivalue = values[k].value
+					var ireadonly = values[k].readonly
+					var itype = values[k].type
 					var idata = item[iname]
-					itemhtml = itemhtml + '<tr><td><button onclick="updateitem(this, \'' + iname + '\',' + itemid + ')"> <span class="glyphicon glyphicon-edit"> </span> </button> </td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
+					if(ireadonly === 'readonly') {
+						itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
+					} else {
+						if(itype === "case") {
+							var ichoise = values[k].choise
+							var options = ''
+							for(var i=0;i<ichoise.length;i++) {
+								var kv = ichoise[i]
+								if(idata === kv.key) {
+									options = options + '<option value="'+kv.key+'" selected>'+kv.value+'</option>'
+								} else {
+									options = options + '<option value="'+kv.key+'">'+kv.value+'</option>'
+								}
+							}
+							var select = '<select class="select">' + options + '</select>'
+							itemhtml = itemhtml + '<tr><td><button onclick="updateitem(this, \'' + iname + '\',' + itemid + ')"> <span class="glyphicon glyphicon-edit"> </span> </button> </td><td>' + ivalue + '</td><td>' + select + '</td></tr>'
+						} else {
+							itemhtml = itemhtml + '<tr><td><button onclick="updateitem(this, \'' + iname + '\',' + itemid + ')"> <span class="glyphicon glyphicon-edit"> </span> </button> </td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
+						}
+					}
 				}
 				itemhtml = itemhtml+'</table>'
 				$("#modal-body").html(itemhtml)
@@ -95,8 +117,9 @@ function searchitem(text) {
 	if(text.length < 1) {
 		window.location.reload();
 	}
+	var status = $("#selectStatus").find("option:selected").val()
 	jQuery.ajax({
-		url: baseUrl + "/"+target+"/page?pageSize=10000&search="+text+"&r=" + Math.random(),
+		url: baseUrl + "/"+target+"/page?pageSize=10000&status="+status+"&search="+text+"&r=" + Math.random(),
 		success: function( result ) {
 			$("#load-more").hide()
 			$("#load-less").hide()
