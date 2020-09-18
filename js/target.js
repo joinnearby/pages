@@ -546,6 +546,25 @@ $("#pages-head").html('')
 $("#pages-data").html('')
 
 $(document).ready(function(){
+	jQuery.ajax({
+		url: baseUrl + "/pages/heads?r=" + Math.random(),
+		success: function( result ) {
+			console.log("[joinnearby] heads success")
+			var data = result.data
+			if(data.length > 0) {
+				$(".navbar-nav").empty()
+			}
+			for(var i=0;i<data.length;i++) {
+				var kv = data[i]
+				var li = '<li class="'+kv.key+'"><a href="#'+kv.key+'" onclick="page(\''+kv.key+'\')">'+kv.value+'</a></li>'
+				$(".navbar-nav").append(li)
+			}
+		},
+		error: function( xhr, result, obj ) {
+			console.log("[joinnearby] heads error " + result)
+		}
+	})
+
 	var cool = getCookie("token")
 	console.log('cookie='+cool)
 	if(cool == null || cool === '') {
