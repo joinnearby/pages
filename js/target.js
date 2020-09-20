@@ -359,6 +359,10 @@ function submititem(iname, itemid) {
 		}),
 		success: function (result) {
 			console.log("[joinnearby] " + target + " update ok " + result)
+			if(iname === 'deleted') {
+				$("#sn_" + itemid + "th").parent().remove()
+				$("#the-modal").modal('hide')
+			}
 		},
 		error: function (xhr, result, obj) {
 			console.log("[joinnearby] " + target + " update error " + result)
