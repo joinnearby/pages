@@ -263,7 +263,7 @@ function removeitem(itemid) {
 		contentType:'application/json',
 		success: function (result) {
 			console.log("[joinnearby] " + target + " delete ok " + result)
-			$("#hash_" + itemid + "th").parent().remove()
+			$("#sn_" + itemid + "th").parent().remove()
 			$("#the-modal").modal('hide')
 		},
 		error: function (xhr, result, obj) {
@@ -286,7 +286,7 @@ function deleteitem(itemid) {
 		contentType:'application/json',
 		success: function (result) {
 			console.log("[joinnearby] " + target + " delete ok " + result)
-			$("#hash_" + itemid + "th").parent().remove()
+			$("#sn_" + itemid + "th").parent().remove()
 			$("#the-modal").modal('hide')
 		},
 		error: function (xhr, result, obj) {
