@@ -61,7 +61,7 @@ function loadmore() {
 				var tr = $(this).parent()
 				var itemid = tr.data('itemid')
 				console.log(itemid)
-				$("#modal-title").html('<button type="button" class="btn btn-warning" onclick="removeitem('+itemid +')"> 彻底删除</button><button type="button" class="btn btn-default" onclick="deleteitem('+itemid +')"> 删除</button>')
+				$("#modal-title").html('<button type="button" class="btn btn-warning" onclick="removeitem('+itemid +')"> 彻底删除</button>')
 
 				var index = parseInt(itemid)
 				var item = dataMap[index]
@@ -168,7 +168,7 @@ function searchitem(text) {
 				var tr = $(this).parent()
 				var itemid = tr.data('itemid')
 				console.log(itemid)
-				$("#modal-title").html('<button type="button" class="btn btn-warning" onclick="removeitem('+itemid +')"> 彻底删除</button><button type="button" class="btn btn-default" onclick="deleteitem('+itemid +')"> 删除</button>')
+				$("#modal-title").html('<button type="button" class="btn btn-warning" onclick="removeitem('+itemid +')"> 彻底删除</button>')
 
 				var index = parseInt(itemid)
 				var item = dataMap[index]
@@ -287,29 +287,6 @@ function removeitem(itemid) {
 	}
 	jQuery.post({
 		url: baseUrl + "/" + target + "/remove/" + hash,
-		dataType: 'json',
-		contentType:'application/json',
-		success: function (result) {
-			console.log("[joinnearby] " + target + " delete ok " + result)
-			$("#sn_" + itemid + "th").parent().remove()
-			$("#the-modal").modal('hide')
-		},
-		error: function (xhr, result, obj) {
-			console.log("[joinnearby] " + target + " delete error " + result)
-		}
-	})
-}
-//软删除
-function deleteitem(itemid) {
-	console.log('deleteitem: ' + itemid)
-	var obj = dataMap[itemid]
-	var hash = obj['hash']
-	var sn = obj['sn']
-	if(hash === undefined) {
-		hash = sn
-	}
-	jQuery.post({
-		url: baseUrl + "/" + target + "/delete/" + hash,
 		dataType: 'json',
 		contentType:'application/json',
 		success: function (result) {
@@ -458,7 +435,7 @@ function first() {
 				var tr = $(this).parent()
 				var itemid = tr.data('itemid')
 				console.log(itemid)
-				$("#modal-title").html('<button type="button" class="btn btn-warning" onclick="removeitem('+itemid +')"> 彻底删除</button><button type="button" class="btn btn-default" onclick="deleteitem('+itemid +')"> 删除</button>')
+				$("#modal-title").html('<button type="button" class="btn btn-warning" onclick="removeitem('+itemid +')"> 彻底删除</button>')
 
 				var index = parseInt(itemid)
 				var item = dataMap[index]
