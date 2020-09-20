@@ -253,8 +253,9 @@ function removeitem(itemid) {
 	console.log('removeitem: ' + itemid)
 	var obj = dataMap[itemid]
 	var hash = obj['hash']
+	var sn = obj['sn']
 	if(hash === undefined) {
-		hash = obj['sn']
+		hash = sn
 	}
 	jQuery.post({
 		url: baseUrl + "/" + target + "/remove/" + hash,
@@ -275,8 +276,9 @@ function deleteitem(itemid) {
 	console.log('deleteitem: ' + itemid)
 	var obj = dataMap[itemid]
 	var hash = obj['hash']
+	var sn = obj['sn']
 	if(hash === undefined) {
-		hash = obj['sn']
+		hash = sn
 	}
 	jQuery.post({
 		url: baseUrl + "/" + target + "/delete/" + hash,
@@ -308,6 +310,10 @@ function submititem(iname, itemid) {
 	console.log('submititem: ' + id)
 	var obj = dataMap[itemid]
 	var hash = obj['hash']
+	var sn = obj['sn']
+	if(hash === undefined) {
+		hash = sn
+	}
 	var oldV = obj[iname]
 	var input = $('#' + id)
 	var value = input.val()
@@ -319,6 +325,7 @@ function submititem(iname, itemid) {
 		data: JSON.stringify({
 			title: iname,
 			hash: hash,
+			sn: sn,
 			newVal: value,
 			oldVal: oldV
 		}),
