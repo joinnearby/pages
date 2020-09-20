@@ -74,7 +74,14 @@ function loadmore() {
 					var itype = values[k].type
 					var idata = item[iname]
 					if(ireadonly) {
-						itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
+						if(itype === "img" || itype === "url") {
+							if(idata === undefined || idata === 'null' || idata === '') {
+								idata = item['host'] + '/' + item['name']
+							}
+							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td><a href="' + idata + '" target="_blank">click</a></td></tr>'
+						} else {
+							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
+						}
 					} else {
 						if(itype === "case") {
 							var ichoise = values[k].choise
@@ -87,8 +94,13 @@ function loadmore() {
 									options = options + '<option value="'+kv.key+'">'+kv.value+'</option>'
 								}
 							}
-							var select = '<select class="select">' + options + '</select>'
-							itemhtml = itemhtml + '<tr><td><button onclick="updateitem(this, \'' + iname + '\',' + itemid + ')"> <span class="glyphicon glyphicon-edit"> </span> </button> </td><td>' + ivalue + '</td><td>' + select + '</td></tr>'
+							var select = '<select class="select" id="' + iname + '_' + itemid + '" onchange="submititem(\''+iname+'\', \''+itemid+'\')">' + options + '</select>'
+							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td>' + select + '</td></tr>'
+						} else if(itype === "img" || itype === "url") {
+							if(idata === undefined || idata === 'null' || idata === '') {
+								idata = item['host'] + '/' + item['name']
+							}
+							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td><a href="' + idata + '" target="_blank">click</a></td></tr>'
 						} else {
 							itemhtml = itemhtml + '<tr><td><button onclick="updateitem(this, \'' + iname + '\',' + itemid + ')"> <span class="glyphicon glyphicon-edit"> </span> </button> </td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
 						}
@@ -169,7 +181,14 @@ function searchitem(text) {
 					var itype = values[k].type
 					var idata = item[iname]
 					if(ireadonly) {
-						itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
+						if(itype === "img" || itype === "url") {
+							if(idata === undefined || idata === 'null' || idata === '') {
+								idata = item['host'] + '/' + item['name']
+							}
+							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td><a href="' + idata + '" target="_blank">click</a></td></tr>'
+						} else {
+							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
+						}
 					} else {
 						if(itype === "case") {
 							var ichoise = values[k].choise
@@ -182,8 +201,13 @@ function searchitem(text) {
 									options = options + '<option value="'+kv.key+'">'+kv.value+'</option>'
 								}
 							}
-							var select = '<select class="select">' + options + '</select>'
-							itemhtml = itemhtml + '<tr><td><button onclick="updateitem(this, \'' + iname + '\',' + itemid + ')"> <span class="glyphicon glyphicon-edit"> </span> </button> </td><td>' + ivalue + '</td><td>' + select + '</td></tr>'
+							var select = '<select class="select" id="' + iname + '_' + itemid + '" onchange="submititem(\''+iname+'\', \''+itemid+'\')">' + options + '</select>'
+							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td>' + select + '</td></tr>'
+						} else if(itype === "img" || itype === "url") {
+							if(idata === undefined || idata === 'null' || idata === '') {
+								idata = item['host'] + '/' + item['name']
+							}
+							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td><a href="' + idata + '" target="_blank">click</a></td></tr>'
 						} else {
 							itemhtml = itemhtml + '<tr><td><button onclick="updateitem(this, \'' + iname + '\',' + itemid + ')"> <span class="glyphicon glyphicon-edit"> </span> </button> </td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
 						}
@@ -404,7 +428,10 @@ function first() {
 				for(var j=0;j<values.length;j++) {
 					var name = values[j].name
 					var id = name + '_' + i + 'th'
-					if(values[j].visible) {
+
+					if(name === 'sn') {
+						table = table + '<td style="display:none" id="'+id+'"></td>\n'
+					} else if(values[j].visible) {
 						table = table + '<td class="data-item" id="'+id+'">' + obj[name] + '</td>\n'
 					}
 					nextId = obj['sn']
