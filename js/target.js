@@ -301,7 +301,8 @@ function updatedata(iname, itemid, value) {
 	obj[iname] = value
 	console.log('updated data: ' + obj[iname])
 }
-//确认删除
+
+//确认
 function submititem(iname, itemid) {
 	var id = iname + '_' + itemid
 	console.log('submititem: ' + id)
@@ -441,8 +442,13 @@ function first() {
 									options = options + '<option value="'+kv.key+'">'+kv.value+'</option>'
 								}
 							}
-							var select = '<select class="select">' + options + '</select>'
-							itemhtml = itemhtml + '<tr><td><button onclick="updateitem(this, \'' + iname + '\',' + itemid + ')"> <span class="glyphicon glyphicon-edit"> </span> </button> </td><td>' + ivalue + '</td><td>' + select + '</td></tr>'
+							var select = '<select class="select" id="' + iname + '_' + itemid + '" onchange="submititem(\''+iname+'\', \''+itemid+'\')">' + options + '</select>'
+							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td>' + select + '</td></tr>'
+						} else if(itype === "img" || itype === "url") {
+							if(idata === undefined || idata === 'null' || idata === '') {
+								idata = item['host'] + '/' + item['name']
+							}
+							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td><a href="' + idata + '">click</a></td></tr>'
 						} else {
 							itemhtml = itemhtml + '<tr><td><button onclick="updateitem(this, \'' + iname + '\',' + itemid + ')"> <span class="glyphicon glyphicon-edit"> </span> </button> </td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
 						}
