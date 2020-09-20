@@ -31,9 +31,13 @@ function loadmore() {
 				for(var j=0;j<values.length;j++) {
 					var name = values[j].name
 					var id = name + '_' + i + 'th'
-					if(values[j].visible) {
+
+					if(name === 'sn') {
+						table = table + '<td style="display:none" id="'+id+'"></td>\n'
+					} else if(values[j].visible) {
 						table = table + '<td class="data-item" id="'+id+'">' + obj[name] + '</td>\n'
 					}
+
 					nextId = obj['sn']
 				}
 				table = table + '</tr>\n'
@@ -440,7 +444,7 @@ function first() {
 							if(idata === undefined || idata === 'null' || idata === '') {
 								idata = item['host'] + '/' + item['name']
 							}
-							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td><a href="' + idata + '">click</a></td></tr>'
+							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td><a href="' + idata + '" target="_blank">click</a></td></tr>'
 						} else {
 							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
 						}
@@ -462,7 +466,7 @@ function first() {
 							if(idata === undefined || idata === 'null' || idata === '') {
 								idata = item['host'] + '/' + item['name']
 							}
-							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td><a href="' + idata + '">click</a></td></tr>'
+							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td><a href="' + idata + '" target="_blank">click</a></td></tr>'
 						} else {
 							itemhtml = itemhtml + '<tr><td><button onclick="updateitem(this, \'' + iname + '\',' + itemid + ')"> <span class="glyphicon glyphicon-edit"> </span> </button> </td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
 						}
