@@ -429,7 +429,14 @@ function first() {
 					var itype = values[k].type
 					var idata = item[iname]
 					if(ireadonly) {
-						itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
+						if(itype === "img" || itype === "url") {
+							if(idata === undefined || idata === 'null' || idata === '') {
+								idata = item['host'] + '/' + item['name']
+							}
+							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td><a href="' + idata + '">click</a></td></tr>'
+						} else {
+							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
+						}
 					} else {
 						if(itype === "case") {
 							var ichoise = values[k].choise
