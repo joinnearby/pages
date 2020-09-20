@@ -253,6 +253,9 @@ function removeitem(itemid) {
 	console.log('removeitem: ' + itemid)
 	var obj = dataMap[itemid]
 	var hash = obj['hash']
+	if(hash === undefined) {
+		hash = obj['sn']
+	}
 	jQuery.post({
 		url: baseUrl + "/" + target + "/remove/" + hash,
 		dataType: 'json',
@@ -272,6 +275,9 @@ function deleteitem(itemid) {
 	console.log('deleteitem: ' + itemid)
 	var obj = dataMap[itemid]
 	var hash = obj['hash']
+	if(hash === undefined) {
+		hash = obj['sn']
+	}
 	jQuery.post({
 		url: baseUrl + "/" + target + "/delete/" + hash,
 		dataType: 'json',
