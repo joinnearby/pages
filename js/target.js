@@ -512,7 +512,7 @@ function submitlogin() {
 			    var token = result.data
 				setCookie("token", token)
 				$.ajaxSetup({
-					header:{token:token}
+					headers:{token:token}
 				});
 			}
 			window.location.reload();
@@ -529,7 +529,7 @@ function login() {
 	//if ok setup ajax header
 	//else show modal
 	//$.ajaxSetup({
-	//      header:{token:token}
+	//      headers:{token:token}
 	// });
 	$("#modal-title").html('<button type="button" class="btn btn-warning" onclick="submitlogin()"> Login </button>')
 	var itemhtml = '<table>'
@@ -603,11 +603,14 @@ $(document).ready(function(){
 		}
 	})
 
-	var cool = getCookie("token")
-	console.log('cookie='+cool)
-	if(cool == null || cool === '') {
+	var token = getCookie("token")
+	console.log('token:'+token)
+	if(token == null || token === '') {
 		login()
 	} else {
+		$.ajaxSetup({
+			headers:{token:token}
+		});
 		$("#log-out").show()
 		$("#log-out").click(function () {
 			delCookie('token')
