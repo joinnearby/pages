@@ -54,6 +54,7 @@ function loadmore() {
 			}
 			table = table + '</table>\n'
 			$("#pages-data").html(table)
+			$("#total").text('总共 ' + result.total + ' 条')
 			lastId.push(nextId)
 			console.log("lastId = " + lastId)
 			// 点击一条弹出一筐
@@ -162,7 +163,7 @@ function searchitem(text) {
 
 			table = table + '</table>\n'
 			$("#pages-data").html(table)
-
+			$("#total").text('总共 ' + result.total + ' 条')
 			console.log("lastId = " + lastId)
 			$("td.data-item").click(function() {
 				var tr = $(this).parent()
@@ -428,6 +429,7 @@ function first() {
 			}
 			table = table + '</table>\n'
 			$("#pages-data").html(table)
+			$("#total").text('总共 ' + result.total + ' 条')
 			lastId.push(nextId)
 			console.log("lastId = " + lastId)
 
@@ -580,9 +582,9 @@ function head() {
 	})
 }
 
-$("#pages-head").html('')
-$("#pages-data").html('')
-
+$("#pages-head").empty()
+$("#pages-data").empty()
+$("#total").empty()
 $(document).ready(function(){
 	jQuery.ajax({
 		url: baseUrl + "/pages/heads?r=" + Math.random(),
