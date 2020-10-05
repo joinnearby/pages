@@ -54,7 +54,7 @@ function loadmore() {
 			}
 			table = table + '</table>\n'
 			$("#pages-data").html(table)
-			$("#total").text('总共 ' + result.total + ' 条')
+
 			lastId.push(nextId)
 			console.log("lastId = " + lastId)
 			// 点击一条弹出一筐
@@ -75,11 +75,11 @@ function loadmore() {
 					var itype = values[k].type
 					var idata = item[iname]
 					if(ireadonly) {
-						if(itype === "img" || itype === "url") {
+						if(itype === "img") {
 							if(idata === undefined || idata === 'null' || idata === '') {
 								idata = item['host'] + '/' + item['name']
 							}
-							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td><a href="' + idata + '" target="_blank">click</a></td></tr>'
+							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td><img src="' + idata + '" target="_blank">click</img></td></tr>'
 						} else {
 							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
 						}
@@ -97,11 +97,11 @@ function loadmore() {
 							}
 							var select = '<select class="select" id="' + iname + '_' + itemid + '" onchange="submititem(\''+iname+'\', \''+itemid+'\')">' + options + '</select>'
 							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td>' + select + '</td></tr>'
-						} else if(itype === "img" || itype === "url") {
+						} else if(itype === "img") {
 							if(idata === undefined || idata === 'null' || idata === '') {
 								idata = item['host'] + '/' + item['name']
 							}
-							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td><a href="' + idata + '" target="_blank">click</a></td></tr>'
+							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td><img src="' + idata + '" target="_blank">click</img></td></tr>'
 						} else {
 							itemhtml = itemhtml + '<tr><td><button onclick="updateitem(this, \'' + iname + '\',' + itemid + ')"> <span class="glyphicon glyphicon-edit"> </span> </button> </td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
 						}
@@ -182,11 +182,11 @@ function searchitem(text) {
 					var itype = values[k].type
 					var idata = item[iname]
 					if(ireadonly) {
-						if(itype === "img" || itype === "url") {
+						if(itype === "img") {
 							if(idata === undefined || idata === 'null' || idata === '') {
 								idata = item['host'] + '/' + item['name']
 							}
-							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td><a href="' + idata + '" target="_blank">click</a></td></tr>'
+							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td><img src="' + idata + '" target="_blank">click</img></td></tr>'
 						} else {
 							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
 						}
@@ -204,11 +204,11 @@ function searchitem(text) {
 							}
 							var select = '<select class="select" id="' + iname + '_' + itemid + '" onchange="submititem(\''+iname+'\', \''+itemid+'\')">' + options + '</select>'
 							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td>' + select + '</td></tr>'
-						} else if(itype === "img" || itype === "url") {
+						} else if(itype === "img") {
 							if(idata === undefined || idata === 'null' || idata === '') {
 								idata = item['host'] + '/' + item['name']
 							}
-							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td><a href="' + idata + '" target="_blank">click</a></td></tr>'
+							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td><img src="' + idata + '" target="_blank">click</img></td></tr>'
 						} else {
 							itemhtml = itemhtml + '<tr><td><button onclick="updateitem(this, \'' + iname + '\',' + itemid + ')"> <span class="glyphicon glyphicon-edit"> </span> </button> </td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
 						}
@@ -450,11 +450,11 @@ function first() {
 					var itype = values[k].type
 					var idata = item[iname]
 					if(ireadonly) {
-						if(itype === "img" || itype === "url") {
+						if(itype === "img") {
 							if(idata === undefined || idata === 'null' || idata === '') {
 								idata = item['host'] + '/' + item['name']
 							}
-							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td><a href="' + idata + '" target="_blank">click</a></td></tr>'
+							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td><img src="' + idata + '" target="_blank">click</img></td></tr>'
 						} else {
 							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
 						}
@@ -472,11 +472,11 @@ function first() {
 							}
 							var select = '<select class="select" id="' + iname + '_' + itemid + '" onchange="submititem(\''+iname+'\', \''+itemid+'\')">' + options + '</select>'
 							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td>' + select + '</td></tr>'
-						} else if(itype === "img" || itype === "url") {
+						} else if(itype === "img") {
 							if(idata === undefined || idata === 'null' || idata === '') {
 								idata = item['host'] + '/' + item['name']
 							}
-							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td><a href="' + idata + '" target="_blank">click</a></td></tr>'
+							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td><img src="' + idata + '" target="_blank">click</img></td></tr>'
 						} else {
 							itemhtml = itemhtml + '<tr><td><button onclick="updateitem(this, \'' + iname + '\',' + itemid + ')"> <span class="glyphicon glyphicon-edit"> </span> </button> </td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
 						}
