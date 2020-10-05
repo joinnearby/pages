@@ -62,54 +62,7 @@ function loadmore() {
 				var tr = $(this).parent()
 				var itemid = tr.data('itemid')
 				console.log(itemid)
-				$("#modal-title").html('<button type="button" class="btn btn-warning" onclick="removeitem('+itemid +')"> 彻底删除</button>')
-
-				var index = parseInt(itemid)
-				var item = dataMap[index]
-
-				var itemhtml = '<table class="min-table">'
-				for(var k=0;k<values.length;k++) {
-					var iname = values[k].name
-					var ivalue = values[k].value
-					var ireadonly = values[k].readonly
-					var itype = values[k].type
-					var idata = item[iname]
-					if(ireadonly) {
-						if(itype === "img") {
-							if(idata === undefined || idata === 'null' || idata === '') {
-								idata = item['host'] + '/' + item['name']
-							}
-							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td><img src="' + idata + '" /></td></tr>'
-						} else {
-							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
-						}
-					} else {
-						if(itype === "case") {
-							var ichoise = values[k].choise
-							var options = ''
-							for(var i=0;i<ichoise.length;i++) {
-								var kv = ichoise[i]
-								if(idata === kv.key) {
-									options = options + '<option value="'+kv.key+'" selected>'+kv.value+'</option>'
-								} else {
-									options = options + '<option value="'+kv.key+'">'+kv.value+'</option>'
-								}
-							}
-							var select = '<select class="select" id="' + iname + '_' + itemid + '" onchange="submititem(\''+iname+'\', \''+itemid+'\')">' + options + '</select>'
-							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td>' + select + '</td></tr>'
-						} else if(itype === "img") {
-							if(idata === undefined || idata === 'null' || idata === '') {
-								idata = item['host'] + '/' + item['name']
-							}
-							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td><img src="' + idata + '" /></td></tr>'
-						} else {
-							itemhtml = itemhtml + '<tr><td><button onclick="updateitem(this, \'' + iname + '\',' + itemid + ')"> <span class="glyphicon glyphicon-edit"> </span> </button> </td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
-						}
-					}
-				}
-				itemhtml = itemhtml+'</table>'
-				$("#modal-body").html(itemhtml)
-				$("#the-modal").modal('show')
+				popItem(itemid)
 			});
 		},
 		error: function( xhr, result, obj ) {
@@ -169,54 +122,7 @@ function searchitem(text) {
 				var tr = $(this).parent()
 				var itemid = tr.data('itemid')
 				console.log(itemid)
-				$("#modal-title").html('<button type="button" class="btn btn-warning" onclick="removeitem('+itemid +')"> 彻底删除</button>')
-
-				var index = parseInt(itemid)
-				var item = dataMap[index]
-
-				var itemhtml = '<table class="min-table">'
-				for(var k=0;k<values.length;k++) {
-					var iname = values[k].name
-					var ivalue = values[k].value
-					var ireadonly = values[k].readonly
-					var itype = values[k].type
-					var idata = item[iname]
-					if(ireadonly) {
-						if(itype === "img") {
-							if(idata === undefined || idata === 'null' || idata === '') {
-								idata = item['host'] + '/' + item['name']
-							}
-							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td><img src="' + idata + '" /></td></tr>'
-						} else {
-							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
-						}
-					} else {
-						if(itype === "case") {
-							var ichoise = values[k].choise
-							var options = ''
-							for(var i=0;i<ichoise.length;i++) {
-								var kv = ichoise[i]
-								if(idata === kv.key) {
-									options = options + '<option value="'+kv.key+'" selected>'+kv.value+'</option>'
-								} else {
-									options = options + '<option value="'+kv.key+'">'+kv.value+'</option>'
-								}
-							}
-							var select = '<select class="select" id="' + iname + '_' + itemid + '" onchange="submititem(\''+iname+'\', \''+itemid+'\')">' + options + '</select>'
-							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td>' + select + '</td></tr>'
-						} else if(itype === "img") {
-							if(idata === undefined || idata === 'null' || idata === '') {
-								idata = item['host'] + '/' + item['name']
-							}
-							itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td><img src="' + idata + '" /></td></tr>'
-						} else {
-							itemhtml = itemhtml + '<tr><td><button onclick="updateitem(this, \'' + iname + '\',' + itemid + ')"> <span class="glyphicon glyphicon-edit"> </span> </button> </td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
-						}
-					}
-				}
-				itemhtml = itemhtml+'</table>'
-				$("#modal-body").html(itemhtml)
-				$("#the-modal").modal('show')
+				popItem(itemid)
 			});
 		},
 		error: function( xhr, result, obj ) {
@@ -450,6 +356,11 @@ function popItem(itemid) {
 	$("#modal-title").html('<button type="button" class="btn btn-warning" onclick="removeitem('+itemid +')"> 彻底删除</button>')
 
 	var index = parseInt(itemid)
+	if(itemid >= dataMap.length) {
+		loadmore();
+		popItem(0)
+		return
+	}
 	var item = dataMap[index]
 
 	var itemhtml = '<table>'
@@ -494,7 +405,7 @@ function popItem(itemid) {
 	}
 	var lastone = itemid-1
 	var nextone = itemid+1
-	itemhtml = itemhtml + '<tr><td></td><td><button onclick="popItem('+lastone+')">上一页</button></td><td><button onclick="popItem('+nextone+')">下一页</button></td></tr>'
+	itemhtml = itemhtml + '<tr><td><button onclick="popItem('+lastone+')">上一条</button></td><td><button onclick="popItem('+nextone+')">下一条</button></td><td></td></tr>'
 	itemhtml = itemhtml+'</table>'
 	$("#modal-body").html(itemhtml)
 	$("#the-modal").modal('show')
