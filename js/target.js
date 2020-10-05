@@ -494,7 +494,7 @@ function popItem(itemid) {
 	}
 	var lastone = itemid-1
 	var nextone = itemid+1
-	itemhtml = itemhtml + '<tr><td><button onclick="popItem(lastone)">上一页</button></td><td></td><td><button onclick="popItem(nextone)">下一页</button></td></tr>'
+	itemhtml = itemhtml + '<tr><td></td><td><button onclick="popItem('+lastone+')">上一页</button></td><td><button onclick="popItem('+nextone+')">下一页</button></td></tr>'
 	itemhtml = itemhtml+'</table>'
 	$("#modal-body").html(itemhtml)
 	$("#the-modal").modal('show')
