@@ -397,9 +397,9 @@ function popItem(itemid) {
 				if(idata === undefined || idata === 'null' || idata === '') {
 					idata = item['host'] + '/' + item['name']
 				}
-				itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td><img src="' + idata + '" /></td></tr>'
+				itemhtml = itemhtml + '<tr><td><button onclick="updateitem(this, \'' + iname + '\',' + itemid + ')"> <span class="glyphicon glyphicon-edit"></span></button></td><td>' + ivalue + '</td><td><img style="width: 300px;" src="' + idata + '" /></td></tr>'
 			} else {
-				itemhtml = itemhtml + '<tr><td><button onclick="updateitem(this, \'' + iname + '\',' + itemid + ')"> <span class="glyphicon glyphicon-edit"> </span> </button> </td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
+				itemhtml = itemhtml + '<tr><td><button onclick="updateitem(this, \'' + iname + '\',' + itemid + ')"> <span class="glyphicon glyphicon-edit"></span></button> </td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
 			}
 		}
 	}
