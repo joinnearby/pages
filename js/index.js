@@ -29,6 +29,9 @@ function showCanvas() {
 }
 index = 0
 function nextLine() {
+    if(index+3 >= data.length) {
+        $("#header").css("background","#22be73")
+    }
     var d = data[index]
     var c = document.getElementById("canvas");
     var context = c.getContext("2d");
