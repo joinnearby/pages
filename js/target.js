@@ -193,7 +193,7 @@ function removeitem(itemid) {
 		hash = sn
 	}
 	jQuery.post({
-		url: baseUrl + "/" + target + "/remove/" + hash,
+		url: baseUrl + "/" + target + "/delete/" + hash + '?remove=true',
 		dataType: 'json',
 		contentType:'application/json',
 		success: function (result) {
