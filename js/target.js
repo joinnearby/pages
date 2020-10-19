@@ -514,8 +514,12 @@ $(document).ready(function(){
 				$(".navbar-nav").empty()
 			}
 			for(var i=0;i<data.length;i++) {
+				var css = ' '
 				var kv = data[i]
-				var li = '<li class="'+kv.key+'"><a href="#'+kv.key+'" onclick="page(\''+kv.key+'\')">'+kv.value+'</a></li>'
+				if(kv.key === target) {
+					css = ' active'
+				}
+				var li = '<li class="'+kv.key + css +'"><a href="#'+kv.key+'" onclick="page(\''+kv.key+'\')">'+kv.value+'</a></li>'
 				$(".navbar-nav").append(li)
 			}
 		},
