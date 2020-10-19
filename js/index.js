@@ -90,7 +90,7 @@ jQuery.ajax({
         var div = $('.products')
         for (var k = 0; k < products.length; k++) {
             var product = products[k]
-            var body = '<div class="product company">' +
+            var body = '<div class="product company" data-qrcode="'+product.qrcode+'">' +
                 '<div class="image" style="box-shadow: rgba(22, 78, 99, 0.25) 0px 0px 30px 0px inset;">' +
                 '<img src="'+product.image+'" width="100%" alt="" role="presentation">' +
                 '</div>' +
@@ -111,6 +111,11 @@ jQuery.ajax({
                 '</div>'
             div.append(body)
         }
+        $('.product').click(function(){
+            $('.qrcode').each(function(){$(this).remove()});
+            var qrcode = '<div class="product company qrcode" style="border-radius: 0 8px 8px 0;box-shadow: 0 2px 6px 0 rgba(0,0,0,.24);"><img style="width: 100%;" src="'+$(this).data('qrcode')+'"/><div class="info"><svg class="eclipse" viewBox="0 0 10 10" preserveAspectRatio="none" shape-rendering="geometricPrecision"><ellipse cx="5" rx="7" cy="30" ry="30"></ellipse></svg><h3 data-testid="fund-name">请扫码联系服务员</h3><div></div></div></div>';
+            $(this).after(qrcode);
+        })
 
     },error: function( xhr, result, obj ) {
       console.log("[product] ajax err: " + result)
