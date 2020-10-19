@@ -504,6 +504,7 @@ $("#pages-head").empty()
 $("#pages-data").empty()
 $("#total").empty()
 $(document).ready(function(){
+	$('.'+target).addClass('active')
 	jQuery.ajax({
 		url: baseUrl + "/pages/heads?r=" + Math.random(),
 		success: function( result ) {
