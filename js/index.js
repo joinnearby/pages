@@ -113,8 +113,11 @@ jQuery.ajax({
         }
         $('.product').click(function(){
             $('.qrcode').each(function(){$(this).remove()});
-            var qrcode = '<div class="product company qrcode" style="border-radius: 8px;box-shadow: 0 2px 6px 0 rgba(0,0,0,.24);"><img style="width: 100%;" src="'+$(this).data('qrcode')+'"/><div class="info"><svg class="eclipse" viewBox="0 0 10 10" preserveAspectRatio="none" shape-rendering="geometricPrecision"><ellipse cx="5" rx="7" cy="30" ry="30"></ellipse></svg><h3 data-testid="fund-name">请扫码联系服务员</h3><div></div></div></div>';
+            var qrcode = '<div class="product company qrcode" style="border-radius: 8px;box-shadow: 0 0 0 0 rgba(0,0,0,.24);"><img style="width: 100%;" src="'+$(this).data('qrcode')+'"/><div class="info"><svg class="eclipse" viewBox="0 0 10 10" preserveAspectRatio="none" shape-rendering="geometricPrecision"><ellipse cx="5" rx="7" cy="30" ry="30"></ellipse></svg><h3 data-testid="fund-name">请扫码联系服务员</h3><div></div></div></div>';
             $(this).after(qrcode);
+            $('.qrcode').click(function () {
+                $(this).remove()
+            });
         })
 
     },error: function( xhr, result, obj ) {
