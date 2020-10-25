@@ -34,7 +34,7 @@ function showCanvas() {
             context.beginPath();
             var btc = []
             for(var i=0;i<length;i++) {
-                btc.push([i,parseInt(result[i]["price"] - 11000)])
+                btc.push([i,parseInt(result[i]["price"] - 12000)])
             }
             data = btc
             index = 0
