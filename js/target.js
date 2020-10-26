@@ -279,9 +279,10 @@ function updateitem(obj, iname, itemid) {
 		var text = $(input).text()
 		var width = $(input).css('width')
 		$(td).css('background', '#22be73')
-		$(input).html('<input type="text" style="width: '+width+'" id="'+id+'" name="update" value="'+text+'"/><button type="button" onclick="submititem(\'' + iname + '\',' + itemid + ')"><span class="glyphicon glyphicon-ok-circle"></span>保存修改</button>')
+		$(input).html('<input type="text" style="width: '+width+'" id="'+id+'" name="update" value=""/><button type="button" onclick="submititem(\'' + iname + '\',' + itemid + ')"><span class="glyphicon glyphicon-ok-circle"></span>保存修改</button>')
 		$(span).removeClass('glyphicon-edit')
 		$(span).addClass('glyphicon-log-out')
+		$('#'+id).val(text)
 	} else if($(span).hasClass('glyphicon-log-out')) {
 		var index = parseInt(itemid)
 		var item = dataMap[index]
