@@ -257,7 +257,7 @@ function submititem(iname, itemid) {
 	$(td).text(value)
 	//update btn color
 	var obj = $(td).siblings()[0]
-	$(obj).css('background', '')
+	$(obj).parent().css('background', '')
 	var span = $(obj).find('span')[0];
 	if($(span).hasClass('glyphicon-log-out')) {
 		$(span).removeClass('glyphicon-log-out')
@@ -278,7 +278,7 @@ function updateitem(obj, iname, itemid) {
 	if($(span).hasClass('glyphicon-edit')) {
 		var text = $(input).text()
 		var width = $(input).css('width')
-		$(td).css('background', '#22be73')
+		$(td).parent().css('background', '#22be73')
 		$(input).html('<input type="text" style="width: '+width+'" id="'+id+'" name="update" value=""/><button type="button" onclick="submititem(\'' + iname + '\',' + itemid + ')"><span class="glyphicon glyphicon-ok-circle"></span>保存修改</button>')
 		$(span).removeClass('glyphicon-edit')
 		$(span).addClass('glyphicon-log-out')
