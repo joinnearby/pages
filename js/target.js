@@ -5,7 +5,7 @@ var title = ''
 var values = []
 var dataMap = []
 var lastId = ['']
-var pageSize = 10
+var pageSize = 255
 var readonlySet = ['sn', 'hash', 'deleted', 'create_time', 'update_time']
 //下一页
 function loadmore() {
