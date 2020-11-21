@@ -34,7 +34,7 @@ function showCanvas() {
             context.beginPath();
             var btc = []
             var max = 0
-            var min = 0
+            var min = 20000000
             for(var i=0;i<length;i++) {
                 var price = parseInt(result[i]["price"])
                 if (price > max) {
@@ -51,7 +51,7 @@ function showCanvas() {
             }
             data = btc
             index = 0
-            for(var i =0;i<data.length;i++) {
+            for(var i =0;i<length;i++) {
                 setTimeout("nextLine()", 1);
             }
         },
