@@ -44,7 +44,7 @@ function showCanvas() {
                     min = price
                 }
             }
-            var scale = height*ratio
+            var scale = height*ratio + 300
             console.log("max=" + max + ", min=" + min + ", scale=" + scale)
             for(var i=0;i<length;i++) {
                 price = parseFloat(result[i]["price"])
