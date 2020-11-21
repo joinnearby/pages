@@ -44,11 +44,11 @@ function showCanvas() {
                     min = price
                 }
             }
-            var scale = height*ratio + 300
+            var scale = height*ratio
             console.log("max=" + max + ", min=" + min + ", scale=" + scale)
             for(var i=0;i<length;i++) {
                 price = parseFloat(result[i]["price"])
-                btc.push([i,(price - min) * scale / (max - min)])
+                btc.push([i,(price - min) * scale / (max - min) - 200])
             }
             data = btc
             index = 0
