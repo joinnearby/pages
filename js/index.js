@@ -33,14 +33,21 @@ function showCanvas() {
             context.fillStyle = "#32e0c4"
             context.beginPath();
             var btc = []
-            var sum = 0
+            var max = 0
+            var min = 0
             for(var i=0;i<length;i++) {
                 var price = parseInt(result[i]["price"])
-                sum += price
+                if (price > max) {
+                    max = price
+                }
+                if (price < min) {
+                    min = price
+                }
             }
 
             for(var i=0;i<length;i++) {
-                btc.push([i,(parseFloat(result[i]["price"])*450.0) / sum])
+                price = parseFloat(result[i]["price"])
+                btc.push([i,(price - min) * 400.0 / (max - min)])
             }
             data = btc
             index = 0
