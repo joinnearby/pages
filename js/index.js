@@ -47,7 +47,7 @@ function showCanvas() {
 
             for(var i=0;i<length;i++) {
                 price = parseFloat(result[i]["price"])
-                btc.push([i,(price - min) * 400.0 / (max - min)])
+                btc.push([i,(price - min) * height / (max - min)])
             }
             data = btc
             index = 0
