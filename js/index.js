@@ -34,10 +34,10 @@ function showCanvas() {
             context.beginPath();
             var btc = []
             var sum = 0
-            for(var i=1;i<101;i++) {
-                sum += parseInt(result[length - i]["price"])
+            for(var i=0;i<length;i++) {
+                sum += parseInt(result[i]["price"])
             }
-            var avarage = sum / 100 - 200
+            var avarage = sum / length - 250
             for(var i=0;i<length;i++) {
                 btc.push([i,parseInt(result[i]["price"] - avarage)])
             }
