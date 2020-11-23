@@ -9,7 +9,7 @@ var pageSize = 255
 var readonlySet = ['sn', 'hash', 'deleted', 'create_time', 'update_time']
 
 function clean(txt) {
-	return txt.replace("<", "< ").replace(">"," >")
+	return txt.replace(/</g, "< ").replace(/>/g," >")
 }
 //下一页
 function loadmore() {
