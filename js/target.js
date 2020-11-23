@@ -7,6 +7,10 @@ var dataMap = []
 var lastId = ['']
 var pageSize = 255
 var readonlySet = ['sn', 'hash', 'deleted', 'create_time', 'update_time']
+
+function clean(txt) {
+	return txt.replace("<", "< ").replace(">"," >")
+}
 //下一页
 function loadmore() {
 	console.log('load more')
@@ -35,7 +39,7 @@ function loadmore() {
 					if(name === 'sn') {
 						table = table + '<td style="display:none" id="'+id+'"></td>\n'
 					} else if(values[j].visible) {
-						table = table + '<td class="data-item" id="'+id+'">' + obj[name] + '</td>\n'
+						table = table + '<td class="data-item" id="'+id+'">' + clean(obj[name]) + '</td>\n'
 					}
 
 					nextId = obj['sn']
@@ -105,7 +109,7 @@ function searchitem(text) {
 					var name = values[j].name
 					var id = name + '_' + i + 'th'
 					if(values[j].visible) {
-						table = table + '<td class="data-item" id="'+id+'">' + obj[name] + '</td>\n'
+						table = table + '<td class="data-item" id="'+id+'">' + clean(obj[name]) + '</td>\n'
 					}
 				}
 				table = table + '</tr>\n'
@@ -321,7 +325,7 @@ function first() {
 					if(name === 'sn') {
 						table = table + '<td style="display:none" id="'+id+'"></td>\n'
 					} else if(values[j].visible) {
-						table = table + '<td class="data-item" id="'+id+'">' + obj[name] + '</td>\n'
+						table = table + '<td class="data-item" id="'+id+'">' + clean(obj[name]) + '</td>\n'
 					}
 					nextId = obj['sn']
 				}
@@ -378,7 +382,7 @@ function popItem(itemid) {
 				}
 				itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td><img src="' + idata + '" /></td></tr>'
 			} else {
-				itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
+				itemhtml = itemhtml + '<tr><td></td><td>' + ivalue + '</td><td>' + clean(idata) + '</td></tr>'
 			}
 		} else {
 			if(itype === "case") {
@@ -400,7 +404,7 @@ function popItem(itemid) {
 				}
 				itemhtml = itemhtml + '<tr><td><button onclick="updateitem(this, \'' + iname + '\',' + itemid + ')"> <span class="glyphicon glyphicon-edit"></span></button></td><td>' + ivalue + '</td><td><img style="width: 300px;" src="' + idata + '" /></td></tr>'
 			} else {
-				itemhtml = itemhtml + '<tr><td><button onclick="updateitem(this, \'' + iname + '\',' + itemid + ')"> <span class="glyphicon glyphicon-edit"></span></button> </td><td>' + ivalue + '</td><td>' + idata + '</td></tr>'
+				itemhtml = itemhtml + '<tr><td><button onclick="updateitem(this, \'' + iname + '\',' + itemid + ')"> <span class="glyphicon glyphicon-edit"></span></button> </td><td>' + ivalue + '</td><td>' + clean(idata) + '</td></tr>'
 			}
 		}
 	}
