@@ -1,6 +1,6 @@
 var baseUrl = "/cloud/internal"
 var updateUrl = "/cloud/internal/pages/update"
-var loginUrl = "/user/login"
+var loginUrl = "/customer/login"
 var title = ''
 var values = []
 var dataMap = []
