@@ -434,7 +434,7 @@ function submitlogin() {
 		success: function (result) {
 			$("#the-modal").modal('hide')
 			if(result.state == 200) {
-			    var token = result.data
+			    var token = result.data.access
 				setCookie("token", token)
 				$.ajaxSetup({
 					headers:{'token':token}
