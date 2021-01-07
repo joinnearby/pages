@@ -97,6 +97,8 @@ var openid = returnCitySN["cip"]+'_'+returnCitySN["cname"]
                         var html = '<div class="chat-item is-left"><div class="msg"><div class="avatar"><img src="css/def_ai.png"></div><div class="content"><div class="bubble"><pre>' + msg + '</pre></div></div></div></div>'
                         $("#messagePanel").append(html)
                     }
+                    var height = $('#messagePanel').height()
+                    $('.chat-scroll').scrollTop(height+26)
                 }
             }
         })
@@ -108,6 +110,8 @@ var openid = returnCitySN["cip"]+'_'+returnCitySN["cname"]
 
         var self = '<div class="chat-item is-right"><div class="msg"><div class="content"><div class="bubble color-custom"><pre>' + msg + '</pre></div></div></div></div>'
         $("#messagePanel").append(self)
+        var height = $('#messagePanel').height()
+        $('.chat-scroll').scrollTop(height+26)
 
         var url  = '/data/api/ajax/'+openid+'/chat/' + msg
         jQuery.ajax({
@@ -118,6 +122,8 @@ var openid = returnCitySN["cip"]+'_'+returnCitySN["cname"]
                     var reply = result.data
                     var html = '<div class="chat-item is-left"><div class="msg"><div class="avatar"><img src="css/def_ai.png"></div><div class="content"><div class="bubble"><pre>' + reply + '</pre></div></div></div></div>'
                     $("#messagePanel").append(html)
+                    var height = $('#messagePanel').height()
+                    $('.chat-scroll').scrollTop(height+26)
                 }
             }
         })
