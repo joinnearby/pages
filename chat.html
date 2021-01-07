@@ -105,6 +105,9 @@ var openid = returnCitySN["cip"]+'_'+returnCitySN["cname"]
 
 
     function chat(msg) {
+        var self = '<div class="chat-item is-right"><div class="msg"><div class="content"><div class="bubble color-custom"><pre>' + msg + '</pre></div></div></div></div>'
+        $("#messagePanel").append(self)
+
         var url  = '/data/api/ajax/'+openid+'/chat/' + msg
         jQuery.ajax({
             url: url,
@@ -115,8 +118,6 @@ var openid = returnCitySN["cip"]+'_'+returnCitySN["cname"]
                     var html = '<div class="chat-item is-left"><div class="msg"><div class="avatar"><img src="css/def_ai.png"></div><div class="content"><div class="bubble"><pre>' + reply + '</pre></div></div></div></div>'
                     $("#messagePanel").append(html)
                 }
-                var self = '<div class="chat-item is-right"><div class="msg"><div class="content"><div class="bubble color-custom"><pre>' + msg + '</pre></div></div></div></div>'
-                $("#messagePanel").append(self)
                 $("#chatInput").val('')
             }
         })
