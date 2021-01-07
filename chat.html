@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="shortcut icon" href="https://suppresswarnings.com/favicon.ico">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>素朴网联™提供人工智能技术服务</title>
+
+        <link href="css/chat.css" rel="stylesheet">
+    <style>
+        body{background:#ebedf3}
+        .js-mobile .main-inner{height:100%}
+        .js-mobile .m-chat{height:100%}
+        .js-mobile .chat-scroll{height:100%;overflow:auto}
+        .js-mobile .chat-ft{position:absolute}
+        .js-mobile .chat-toolbar{height:51px}
+        .m-expression .exp-cont .exp-slide{max-width:458px!important;padding:0 5px!important;height:196px!important}
+        .m-expression .exp-cont{padding:15px;overflow:hidden}
+        .m-expression .exp-cont .exp-slide{padding:0}
+        @media (max-height:600px),(max-width:1000px){.chat-toolbar .inputone{display:none}.chat-toolbar .inputtwo{display:block}.chat-toolbar .operat{left:0;right:0;padding:10px 0}.chat-toolbar .operat .iconfont{font-size:20px}.chat-toolbar .operat .icon-add{display:none}.chat-toolbar .operat .icon-photo{display:inline-block!important}.chat-scroll{padding-bottom:200px}.chat-ft{height:200px}.chat-toolbar .inputtwo .chat-input{padding:4px 10px;height:120px;font-size:14px;background:#f7f7fb;position:absolute;top:10px;width:100%;z-index:99}.chat-toolbar{height:200px}.chat-toolbar .chat-btn{height:36px;line-height:36px;padding:0 10px;position:absolute;opacity:1;right:20px;bottom:20px;width:92px;top:auto;font-size:14px;border-radius:4px}.chat-ft .tool-view{height:auto}.chat-ft .tool-view .emoticon{width:460px;height:226px;transition:none}.m-expression{height:226px}.chat-ft .tool-view .emoticon.is-show{display:inline-block;left:10px;top:-236px;background:#fafafb;box-shadow:0 2px 8px 0 rgba(0,0,0,.14)}.m-expression .exp-page{display:none}.m-expression .exp-cont .exp-slide{max-width:460px;width:auto!important;height:196px;display:inline-block;overflow-x:hidden;overflow-y:overlay;padding:15px 20px}.m-expression .exp-cont .exp-slide .face-item{float:left;width:28px;height:28px;font-size:0;position:relative}.m-chat.is-ftool .chat-ft{height:200px!important}}
+        @media (max-height:600px),(max-width:470px){.chat-ft .tool-view .emoticon{right:10px!important;left:10px!important;width:auto!important}.m-expression .exp-cont .exp-slide{height:196px!important}.m-chat.is-ftool .chat-ft{height:200px!important}}.color-custom {background-color: #1aad19 !important;}.bubble.color-custom::before {border-left-color:#1aad19 !important;}.color-custom-text {color: #1aad19 !important;}
+</style>
+    <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="main">
+<div class="main-inner">
+<div class="m-chat">
+    <div class="chat-hd">
+    <h1 class="title">请随便聊点什么</h1>
+    <p class="desc">服务时间为7*24H</p>
+        <div class="iconbox">
+            <i class="iconfont icon-voice icon-voice-open"></i>
+            <i class="iconfont icon-arrow-down" style="display: none;"></i>
+        </div>
+    </div>
+
+<div class="chat-scroll" style="transition:none;-webkit-overflow-scrolling:touch">
+    <div class="minscroll">
+        <div class="chat-bd">
+            <div class="inner" id="messagePanel">
+                <!----------------------------------------------------------->
+                <div class="chat-item is-left">
+                    <div class="msg">
+                        <div class="avatar">
+                            <img src="css/def_ai.png" alt="">
+                        </div>
+                        <div class="content ">
+                            <div class="bubble ">
+                                <pre>你好，有什么想法吗？</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="chat-item is-right">
+                    <div class="msg">
+                        <div class="content">
+                            <div class="bubble color-custom">
+                                <pre>你好</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!----------------------------------------------------------->
+            </div>
+        </div>
+    </div>
+        <div class="copyright">由素朴网联™提供人工智能技术支持</div>
+    </div>
+    <div class="chat-ft" style="transition:none">
+        <div class="chat-toolbar">
+            <div class="inputtwo"><textarea id="chatInput" placeholder="请随便和我聊点啥" class="chat-input"></textarea></div>
+            <a href="javascript:;" class="chat-btn color-custom">发送</a>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+
+var openid = returnCitySN["cip"]+'_'+returnCitySN["cname"]
+    
+    function ping() {
+        var time = new Date().getTime()
+        console.log('ping ... ' + time)
+        var url  = 'https://suppresswarnings.com/data/api/ajax/'+openid+'/ping/' + time
+        jQuery.ajax({
+            url: url,
+            method: 'POST',
+            success: function (result) {
+                if (result.code == 0 && result.total > 0) {
+                    var data = result.data
+                    console.log(data)
+                    for (var i = data.length - 1; i >= 0; i--) {
+                        var chat = data[i]
+                        var msg = chat.message
+                        var html = '<div class="chat-item is-left"><div class="msg"><div class="avatar"><img src="css/def_ai.png"></div><div class="content"><div class="bubble"><pre>' + msg + '</pre></div></div></div></div>'
+                        $("#messagePanel").append(html)
+                    }
+                }
+            }
+        })
+    }
+
+
+    function chat(msg) {
+        var url  = 'https://suppresswarnings.com/data/api/ajax/'+openid+'/chat/' + msg
+        jQuery.ajax({
+            url: url,
+            method: 'POST',
+            success: function (result) {
+                if (result.data && result.data.length > 0) {
+                    var reply = result.data
+                    var html = '<div class="chat-item is-left"><div class="msg"><div class="avatar"><img src="css/def_ai.png"></div><div class="content"><div class="bubble"><pre>' + reply + '</pre></div></div></div></div>'
+                    $("#messagePanel").append(html)
+                }
+                var self = '<div class="chat-item is-right"><div class="msg"><div class="content"><div class="bubble color-custom"><pre>' + msg + '</pre></div></div></div></div>'
+                $("#messagePanel").append(self)
+                $("#chatInput").val('')
+            }
+        })
+    }
+    
+
+    $(document).ready(function(){
+        $('#chatInput').keypress(function (e) {
+            if (e.keyCode == "13") {
+                console.log("press enter")
+                var msg = $("#chatInput").val()
+                if(msg.length > 0) {
+                    chat(msg)
+                }
+            }
+        });
+        chat('在吗')
+        setInterval('ping();', 1234);
+    })
+    
+</script>
+</body>
+</html>
