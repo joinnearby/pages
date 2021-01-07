@@ -1,4 +1,3 @@
-var host = "http://suppresswarnings.com/"
 var ids = ["u", "ur", "mr", "dr", "d", "dl", "ml",  "ul"]
 var index = 0
 var forever = 10000
@@ -24,72 +23,14 @@ function green() {
 	}
 	index++;
 }
-function gethtml(uri, container) {
 
-	$.ajax({
-		url : uri,
-		data : {
-			random : randnum
-		},
-		success : function(result) {
-			$(container).html(result);
-		},
-		error : function(xhr, result, obj) {
-			$(container).html("<span>天哪，不见了</span><br/>" + result);
-		}
-	});
-}
 function showDiv() {
 	$("#popWindow").attr("width", "100%");
-	$("#popWindow").attr("height", "100%");
+	$("#popWindow").attr("height", "90%");
     $("#popWindow").show();
 }
 function closeDiv() {
 	$("#popWindow").hide();
-}
-(function($) {
-	$.extend({
-		tipsBox : function(options) {
-			options = $.extend({
-				obj : null,
-				str : "+1",
-				startSize : "12px",
-				endSize : "30px",
-				interval : 600,
-				color : "red",
-				callback : function() {
-				}
-			}, options);
-			$("body").append("<span class='num'>" + options.str + "</span>");
-			var box = $(".num");
-			var left = options.obj.offset().left + options.obj.width() / 2;
-			var top = options.obj.offset().top - options.obj.height();
-			box.css({
-				"position" : "absolute",
-				"left" : left + "px",
-				"top" : top + "px",
-				"z-index" : 9999,
-				"font-size" : options.startSize,
-				"line-height" : options.endSize,
-				"color" : options.color
-			});
-			box.animate({
-				"font-size" : options.endSize,
-				"opacity" : "0",
-				"top" : top - parseInt(options.endSize) + "px"
-			}, options.interval, function() {
-				box.remove();
-				options.callback();
-			});
-		}
-	});
-})(jQuery);
-
-function niceIn(prop) {
-	prop.find('i').addClass('niceIn');
-	setTimeout(function() {
-		prop.find('i').removeClass('niceIn');
-	}, 1000);
 }
 
 //JS操作cookies方法!
@@ -136,9 +77,5 @@ $(document).ready(function() {
 		} else {
 			limited = 0;
 		}
-	});
-
-	$("#customphone").click(function() {
-		$("#customqrcode").toggle()
 	});
 });
